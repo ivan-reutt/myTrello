@@ -41,8 +41,8 @@ class AddColumn extends React.Component {
   }
 }
 
-export default AddColumn;
-
 AddColumn.propTypes = {
   addColumn: func.isRequired,
 };
+
+export default AddColumn;

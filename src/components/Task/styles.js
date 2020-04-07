@@ -56,7 +56,7 @@ export const TaskTextarea = styled.textarea`
 export const TaskTitle = styled.span`
   width: 100%;
   word-wrap: break-word;
-  word-break: break-all;
+  word-break: break-word;
   display: inline-block;
   font-size: 14px;
   border: 1px solid transparent;

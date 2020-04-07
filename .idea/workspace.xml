@@ -2,33 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ef19e9bb-79f5-49fa-bc74-c75e7e20c975" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.eslintrc.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jsLinters/eslint.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.prettierrc" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Styles.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/actions/actionColumn.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AddColumn.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AddTask.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AddTaskForm.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Board.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Column.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Task.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Title.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/constants/actions.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/containers/BoardContainer.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/initialState.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/reducers/column.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/reducers/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/serviceWorker.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/serviceWorker.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/AddColumn/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AddColumn/component.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/AddColumn/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AddColumn/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/AddTask/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AddTask/component.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/AddTask/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AddTask/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/AddTaskForm/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AddTaskForm/component.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/AddTaskForm/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AddTaskForm/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Board/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Board/component.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Board/container.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Board/container.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Board/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Board/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Column/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Column/component.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Column/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Column/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ColumnTitle/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ColumnTitle/component.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ColumnTitle/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ColumnTitle/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Task/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Task/component.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Task/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Task/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Task/styles.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Task/styles.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ToggleTheme/component.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ToggleTheme/component.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,7 +55,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="js.linters.configure.manually.selectedeslint" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/components/Task" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/components/ToggleTheme" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -83,14 +76,34 @@
       <recent name="C:\projects\learningTrello\my-trello\src\components\Board" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\projects\learningTrello\my-trello\src\components\ToggleTheme" />
       <recent name="C:\projects\learningTrello\my-trello\src\components\Task" />
       <recent name="C:\projects\learningTrello\my-trello\src\components\ColumnTitle" />
       <recent name="C:\projects\learningTrello\my-trello\src\components\Column" />
       <recent name="C:\projects\learningTrello\my-trello\src\components\Board" />
-      <recent name="C:\projects\learningTrello\my-trello\src\components\AddTaskForm" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="npm.start">
+    <configuration name="lint" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="lint" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="prettier" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="prettier" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
     <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -104,6 +117,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="npm.start" />
+        <item itemvalue="npm.lint" />
+        <item itemvalue="npm.prettier" />
       </list>
     </recent_temporary>
   </component>
@@ -140,7 +155,7 @@
       <workItem from="1586165985412" duration="2188000" />
       <workItem from="1586168307038" duration="14736000" />
       <workItem from="1586187813984" duration="6751000" />
-      <workItem from="1586242160388" duration="8364000" />
+      <workItem from="1586242160388" duration="12902000" />
     </task>
     <servers />
   </component>
@@ -186,26 +201,26 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="549" y="168" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1586174436472" />
-    <state width="1515" height="153" key="GridCell.Tab.0.bottom" timestamp="1586251055942">
+    <state width="1515" height="313" key="GridCell.Tab.0.bottom" timestamp="1586257221467">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1515" height="2" key="GridCell.Tab.0.bottom/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1585755135094" />
-    <state width="1515" height="153" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1586251055942" />
-    <state width="1515" height="153" key="GridCell.Tab.0.center" timestamp="1586251055941">
+    <state width="1515" height="313" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1586257221467" />
+    <state width="1515" height="313" key="GridCell.Tab.0.center" timestamp="1586257221466">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1515" height="2" key="GridCell.Tab.0.center/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1585755135094" />
-    <state width="1515" height="153" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1586251055941" />
-    <state width="1515" height="153" key="GridCell.Tab.0.left" timestamp="1586251055941">
+    <state width="1515" height="313" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1586257221466" />
+    <state width="1515" height="313" key="GridCell.Tab.0.left" timestamp="1586257221466">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1515" height="2" key="GridCell.Tab.0.left/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1585755135094" />
-    <state width="1515" height="153" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1586251055941" />
-    <state width="1515" height="153" key="GridCell.Tab.0.right" timestamp="1586251055942">
+    <state width="1515" height="313" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1586257221466" />
+    <state width="1515" height="313" key="GridCell.Tab.0.right" timestamp="1586257221467">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1515" height="2" key="GridCell.Tab.0.right/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1585755135094" />
-    <state width="1515" height="153" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1586251055942" />
+    <state width="1515" height="313" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1586257221467" />
     <state x="277" y="56" key="SettingsEditor" timestamp="1586174920114">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -227,7 +242,7 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/components/ColumnTitle/component.js</url>
+          <url>file://$PROJECT_DIR$/src/components/ColumnTitle/component.jsx</url>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">

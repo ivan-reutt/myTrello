@@ -42,9 +42,9 @@ class AddTask extends React.Component {
   }
 }
 
-export default AddTask;
-
 AddTask.propTypes = {
   id: number.isRequired,
   addTask: func.isRequired,
 };
+
+export default AddTask;

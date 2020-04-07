@@ -11,7 +11,7 @@ import {
   dndTaskOut,
   dndColumn,
 } from 'store/actions/actionColumn';
-import Board from './component';
+import Board from 'components/Board/component';
 
 const mapStateToProps = (state) => ({
   columns: state.columns,

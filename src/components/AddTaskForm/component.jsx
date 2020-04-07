@@ -58,10 +58,10 @@ class AddTaskForm extends React.Component {
   }
 }
 
-export default AddTaskForm;
-
 AddTaskForm.propTypes = {
   id: number.isRequired,
   addTask: func.isRequired,
   handleClick: func.isRequired,
 };
+
+export default AddTaskForm;

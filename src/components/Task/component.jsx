@@ -10,7 +10,7 @@ import {
   TaskButton,
 } from './styles';
 
-class Component extends React.Component {
+class Task extends React.Component {
   constructor(props) {
     super(props);
     const { title } = this.props;
@@ -87,9 +87,7 @@ class Component extends React.Component {
   }
 }
 
-export default Component;
-
-Component.propTypes = {
+Task.propTypes = {
   id: number.isRequired,
   title: string.isRequired,
   taskId: number.isRequired,
@@ -97,3 +95,5 @@ Component.propTypes = {
   delTask: func.isRequired,
   editTask: func.isRequired,
 };
+
+export default Task;

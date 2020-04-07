@@ -61,8 +61,6 @@ const Column = (props) => {
   );
 };
 
-export default Column;
-
 Column.propTypes = {
   id: number.isRequired,
   title: string.isRequired,
@@ -74,3 +72,5 @@ Column.propTypes = {
   editTask: func.isRequired,
   addTask: func.isRequired,
 };
+
+export default Column;

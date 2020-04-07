@@ -105,7 +105,6 @@ class Board extends React.Component {
     );
   }
 }
-export default Board;
 
 Board.propTypes = {
   columns: array.isRequired,
@@ -119,3 +118,5 @@ Board.propTypes = {
   dndTaskIn: func.isRequired,
   dndTaskOut: func.isRequired,
 };
+
+export default Board;

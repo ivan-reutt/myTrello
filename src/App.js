@@ -3,8 +3,8 @@ import { Provider } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
 
 import store from 'store/store';
-import BoardContainer from 'components/Board/container';
-import ToggleTheme from 'components/ToggleTheme/component';
+import BoardContainer from 'components/Board/index';
+import ToggleTheme from 'components/ToggleTheme/index';
 import GlobalStyle from './GlobalStyles';
 import { lightTheme, darkTheme } from './theme';
 
