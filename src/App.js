@@ -1,18 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Provider } from 'react-redux';
+import { ThemeProvider } from 'styled-components';
 
-import store from './store';
-import BoardContainer from "./containers/BoardContainer";
-
-import { GlobalStyle } from "./Styles";
-
+import store from 'store/store';
+import BoardContainer from 'components/Board/container';
+import ToggleTheme from 'components/ToggleTheme/component';
+import GlobalStyle from './GlobalStyles';
+import { lightTheme, darkTheme } from './theme';
 
 function App() {
+  const [theme, setTheme] = useState('light');
+  const toggleTheme = () => {
+    if (theme === 'light') {
+      setTheme('dark');
+    } else {
+      setTheme('light');
+    }
+  };
   return (
-        <Provider store={store}>
-          <BoardContainer/>
-          <GlobalStyle/>
-        </Provider>
+    <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
+      <Provider store={store}>
+        <BoardContainer />
+        <ToggleTheme theme={theme} toggleTheme={toggleTheme} />
+        <GlobalStyle />
+      </Provider>
+    </ThemeProvider>
   );
 }
 
