@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 export const TaskWrap = styled.div`
-  position: relative;
-  background-color: ${(props) => (props.isDragging ? '#dbd274' : '#fffadf')};
+  background-color: ${(props) =>
+    props.isDragging ? '#dbd274' : props.backgroundColor};
   box-shadow: 3px 5px 10px rgba(0, 0, 0, 0.15);
   border-radius: 2px;
   margin-bottom: 10px;
@@ -36,7 +36,7 @@ export const TaskTextarea = styled.textarea`
   resize: none;
   background-color: transparent;
   font-size: 14px;
-  padding: 3px 3px 3px 5px;
+  padding: 7px 5px 5px 7px;
   overflow: hidden;
   max-width: 100%;
   width: 100%;
@@ -53,6 +53,11 @@ export const TaskTextarea = styled.textarea`
   }
 `;
 
+export const TaskTextWrap = styled.div`
+  position: relative;
+  width: 100%;
+`;
+
 export const TaskTitle = styled.span`
   width: 100%;
   word-wrap: break-word;
@@ -60,7 +65,7 @@ export const TaskTitle = styled.span`
   display: inline-block;
   font-size: 14px;
   border: 1px solid transparent;
-  padding: 3px 3px 3px 5px;
+  padding: 7px 5px 5px 7px;
   line-height: 16px;
 `;
 
@@ -68,7 +73,7 @@ export const TaskButtonGroup = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 38px;
+  width: 58px;
   padding: 3px;
   position: absolute;
   right: 0;
@@ -86,7 +91,7 @@ export const TaskButton = styled.button`
   border-radius: 2px;
   cursor: pointer;
   background-color: #d1b0008c;
-  width: 49%;
+  width: 33%;
   height: 18px;
   color: #000;
   &:hover {
@@ -96,4 +101,41 @@ export const TaskButton = styled.button`
   &:active {
     outline: transparent;
   }
+`;
+
+export const TimePickerWrap = styled.div`
+  position: absolute;
+  left: 100%;
+  &:before {
+    display: block;
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+  }
+`;
+
+export const TimePicker = styled.div`
+  position: relative;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  & .react-datetime-picker__wrapper {
+    background-color: #fff;
+    margin-bottom: 10px;
+  }
+`;
+
+export const TimePickerButton = styled.button`
+  border: none;
+  border-radius: 2px;
+  font-size: 16px;
+  line-height: 22px;
+  padding: 3px 10px;
+  cursor: pointer;
 `;

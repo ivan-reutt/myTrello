@@ -7,3 +7,7 @@ export const DEL_TASK = 'DEL_TASK';
 export const DND_TASK_IN = 'DND_TASK_IN';
 export const DND_TASK_OUT = 'DND_TASK_OUT';
 export const DND_COLUMN = 'DND_COLUMN';
+export const ADD_BOARD = 'ADD_BOARD';
+export const SELECT_BOARD = 'SELECT_BOARD';
+export const EDIT_BOARD = 'EDIT_BOARD';
+export const DEL_BOARD = 'DEL_BOARD';

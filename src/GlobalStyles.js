@@ -31,6 +31,7 @@ const GlobalStyle = createGlobalStyle`
     position:absolute;
     top: 0;
     left: 0;
+    margin: 0 10px;
     overflow-y: hidden;
     transition: all 0.25s linear;
     font-family: 'Proxima Nova', serif;

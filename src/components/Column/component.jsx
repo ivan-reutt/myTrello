@@ -10,6 +10,7 @@ import { ColumnComponent, TaskListWrap } from './styles';
 
 const Column = (props) => {
   const {
+    idBoard,
     id,
     title,
     editColumn,
@@ -28,6 +29,7 @@ const Column = (props) => {
             provided={provided}
             title={title}
             id={id}
+            idBoard={idBoard}
             editColumn={editColumn}
             delColumn={delColumn}
           />
@@ -41,6 +43,7 @@ const Column = (props) => {
                 {/* eslint-disable-next-line no-shadow */}
                 {tasks.map((elem, index) => (
                   <Task
+                    idBoard={idBoard}
                     key={elem.id}
                     id={id}
                     taskId={elem.id}
@@ -54,7 +57,7 @@ const Column = (props) => {
               </TaskListWrap>
             )}
           </Droppable>
-          <AddTask id={id} addTask={addTask} />
+          <AddTask idBoard={idBoard} id={id} addTask={addTask} />
         </ColumnComponent>
       )}
     </Draggable>
@@ -63,6 +66,7 @@ const Column = (props) => {
 
 Column.propTypes = {
   id: number.isRequired,
+  idBoard: number.isRequired,
   title: string.isRequired,
   index: number.isRequired,
   tasks: array.isRequired,

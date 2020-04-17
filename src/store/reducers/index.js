@@ -1,7 +1,9 @@
 import { combineReducers } from 'redux';
 
-import columns from './column';
+import boards from 'store/reducers/boards';
+import selected from 'store/reducers/selected';
 
 export default combineReducers({
-  columns,
+  boards,
+  selected,
 });

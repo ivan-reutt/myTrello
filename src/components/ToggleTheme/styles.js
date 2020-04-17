@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 const ToggleContainer = styled.button`
   position: fixed;
-  top: 3px;
+  top: 5px;
   left: calc(50% - 45px);
   background: ${({ theme }) => theme.gradient};
   border: none;

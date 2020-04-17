@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { Provider } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
+import { PersistGate } from 'redux-persist/integration/react';
 
-import store from 'store/store';
-import BoardContainer from 'components/Board/index';
+import { persistor, store } from 'store/store';
+import PageContainer from 'components/Page/index';
 import ToggleTheme from 'components/ToggleTheme/index';
 import GlobalStyle from './GlobalStyles';
 import { lightTheme, darkTheme } from './theme';
@@ -20,9 +21,11 @@ function App() {
   return (
     <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
       <Provider store={store}>
-        <BoardContainer />
-        <ToggleTheme theme={theme} toggleTheme={toggleTheme} />
-        <GlobalStyle />
+        <PersistGate loading={null} persistor={persistor}>
+          <PageContainer />
+          <ToggleTheme theme={theme} toggleTheme={toggleTheme} />
+          <GlobalStyle />
+        </PersistGate>
       </Provider>
     </ThemeProvider>
   );

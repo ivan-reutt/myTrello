@@ -1,5 +1,5 @@
 import React from 'react';
-import { func } from 'prop-types';
+import { func, number } from 'prop-types';
 
 import { AddColumnForm, AddColumnInput, AddColumnButton } from './styles';
 
@@ -11,9 +11,9 @@ class AddColumn extends React.Component {
   handleSubmit = (event) => {
     event.preventDefault();
     const { title } = this.state;
-    const { addColumn } = this.props;
-    if (title.length > 2) {
-      addColumn(title);
+    const { idBoard, addColumn } = this.props;
+    if (title.trim()) {
+      addColumn(idBoard, title);
       this.setState({ title: '' });
     }
   };
@@ -43,6 +43,7 @@ class AddColumn extends React.Component {
 
 AddColumn.propTypes = {
   addColumn: func.isRequired,
+  idBoard: number.isRequired,
 };
 
 export default AddColumn;

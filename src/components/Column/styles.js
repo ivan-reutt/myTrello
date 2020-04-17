@@ -13,13 +13,14 @@ export const ColumnComponent = styled.div`
   min-width: 300px;
   max-width: 300px;
   min-height: 120px;
+  max-height: 630px;
   box-shadow: 0 1px 7px rgba(0, 0, 0, 0.2);
 `;
 
 export const TaskListWrap = styled.div`
   padding: 2px;
   width: 100%;
-  max-height: 515px;
-  overflow-x: hidden;
+  max-height: 500px;
   overflow-y: auto;
+  overflow-x: visible;
 `;

@@ -19,8 +19,11 @@ export const ColumnTitleButton = styled.button`
   color: #555;
   background-color: #fffadf;
   cursor: pointer;
-  width: 20px;
-  line-height: 20px;
+  width: 25px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   &:hover {
     background-color: #fff094;
     color: #000;

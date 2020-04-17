@@ -1,5 +1,5 @@
 import React from 'react';
-import { number, func } from 'prop-types';
+import { func, number } from 'prop-types';
 
 import {
   AddTaskFormWrap,
@@ -13,11 +13,11 @@ class AddTaskForm extends React.Component {
   };
 
   handleSubmit = (e) => {
-    const { addTask, id } = this.props;
+    const { addTask, idBoard, id } = this.props;
     const { title } = this.state;
     e.preventDefault();
-    if (title.length > 3) {
-      addTask(id, title);
+    if (title.trim()) {
+      addTask(idBoard, id, title);
     }
     this.setState({ title: '' });
   };
@@ -60,6 +60,7 @@ class AddTaskForm extends React.Component {
 
 AddTaskForm.propTypes = {
   id: number.isRequired,
+  idBoard: number.isRequired,
   addTask: func.isRequired,
   handleClick: func.isRequired,
 };

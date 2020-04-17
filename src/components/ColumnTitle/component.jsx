@@ -1,6 +1,6 @@
 import React, { createRef } from 'react';
 
-import { number, string, func, object } from 'prop-types';
+import { string, func, number, object } from 'prop-types';
 
 import {
   ColumnTitleWrap,
@@ -22,11 +22,13 @@ class ColumnTitle extends React.Component {
   }
 
   handleChange = (element, defaultHeight) => {
-    if (element) {
-      const target = element.target ? element.target : element;
-      target.style.height = defaultHeight;
-      target.style.height = `${target.scrollHeight}px`;
-      this.setState({ title: element.target.value });
+    if (element.target.value.trim()) {
+      if (element) {
+        const target = element.target ? element.target : element;
+        target.style.height = defaultHeight;
+        target.style.height = `${target.scrollHeight}px`;
+        this.setState({ title: element.target.value });
+      }
     }
   };
 
@@ -38,8 +40,8 @@ class ColumnTitle extends React.Component {
   };
 
   handleBlur = (id, title) => {
-    const { editColumn } = this.props;
-    editColumn(id, title);
+    const { editColumn, idBoard } = this.props;
+    editColumn(idBoard, id, title);
     this.setState({ showTextarea: false });
   };
 
@@ -52,7 +54,7 @@ class ColumnTitle extends React.Component {
   };
 
   render() {
-    const { id, delColumn, provided } = this.props;
+    const { idBoard, id, delColumn, provided } = this.props;
     const { title, showTextarea } = this.state;
     const defaultRows = Math.ceil(title.length / 25);
     return (
@@ -76,7 +78,7 @@ class ColumnTitle extends React.Component {
             onBlur={() => this.handleBlur(id, title)}
           />
         )}
-        <ColumnTitleButton type="button" onClick={() => delColumn(id)}>
+        <ColumnTitleButton type="button" onClick={() => delColumn(idBoard, id)}>
           <i className="fas fa-times" />
         </ColumnTitleButton>
       </ColumnTitleWrap>
@@ -86,6 +88,7 @@ class ColumnTitle extends React.Component {
 
 ColumnTitle.propTypes = {
   id: number.isRequired,
+  idBoard: number.isRequired,
   title: string.isRequired,
   delColumn: func.isRequired,
   editColumn: func.isRequired,

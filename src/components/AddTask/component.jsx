@@ -1,5 +1,5 @@
 import React from 'react';
-import { number, func } from 'prop-types';
+import { func, number } from 'prop-types';
 
 import AddTaskForm from 'components/AddTaskForm/index';
 
@@ -21,11 +21,12 @@ class AddTask extends React.Component {
 
   render() {
     const { add } = this.state;
-    const { id, addTask } = this.props;
+    const { idBoard, id, addTask } = this.props;
     return (
       <AddTaskWrap>
         {add ? (
           <AddTaskForm
+            idBoard={idBoard}
             id={id}
             addTask={addTask}
             handleBlur={this.handleBlur}
@@ -44,6 +45,7 @@ class AddTask extends React.Component {
 
 AddTask.propTypes = {
   id: number.isRequired,
+  idBoard: number.isRequired,
   addTask: func.isRequired,
 };
 

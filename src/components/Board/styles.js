@@ -6,7 +6,7 @@ const ColumnList = styled.div`
   flex-wrap: nowrap;
   justify-content: flex-start;
   align-items: start;
-  padding-top: 35px;
+  margin-top: 83px;
 `;
 
 export default ColumnList;
