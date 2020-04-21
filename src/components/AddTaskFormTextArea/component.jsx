@@ -1,5 +1,5 @@
 import React from 'react';
-import { func, object } from 'prop-types';
+import { func, string } from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 
 import StyledAddTaskFormTextarea from './styles';
@@ -23,7 +23,7 @@ const AddTaskFormTextarea = ({ handleKeyDown, handleChange, value }) => {
 AddTaskFormTextarea.propTypes = {
   handleKeyDown: func.isRequired,
   handleChange: func.isRequired,
-  value: object.isRequired,
+  value: string.isRequired,
 };
 
 export default AddTaskFormTextarea;

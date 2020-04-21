@@ -2,33 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ef19e9bb-79f5-49fa-bc74-c75e7e20c975" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AddColumn/component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AddColumn/component.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AddTask/component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AddTask/component.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AddTaskForm/component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AddTaskForm/component.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/AddTaskForm/styles.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AddTaskForm/styles.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Board/component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Board/component.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Board/container.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Board/container.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/BoardContent/component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/BoardContent/component.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/BoardMini/component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/BoardMini/component.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/BoardTitle/component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/BoardTitle/component.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Column/component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Column/component.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ColumnContent/component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ColumnContent/component.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ColumnTitle/component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ColumnTitle/component.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Page/component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Page/component.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Page/container.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Page/container.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Page/styles.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Page/styles.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/SelectBoard/component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SelectBoard/component.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/SelectBoard/styles.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SelectBoard/styles.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/SelectLanguage/component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SelectLanguage/component.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Task/component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Task/component.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/constants/constants.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/constants.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/actions/actionBoards.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions/actionBoards.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/actions/actionSelected.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/actions/actionSelected.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/reducers/boards.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/reducers/boards.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/AddTaskFormTextArea/component.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/AddTaskFormTextArea/component.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -132,9 +107,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="npm.start" />
         <item itemvalue="npm.lint" />
         <item itemvalue="npm.prettier" />
-        <item itemvalue="npm.start" />
         <item itemvalue="Node.js.actionSelected.js" />
       </list>
     </recent_temporary>
@@ -190,7 +165,8 @@
       <workItem from="1587112516881" duration="12945000" />
       <workItem from="1587371173307" duration="26662000" />
       <workItem from="1587451267186" duration="18370000" />
-      <workItem from="1587471789157" duration="19566000" />
+      <workItem from="1587471789157" duration="20646000" />
+      <workItem from="1587499164720" duration="594000" />
     </task>
     <servers />
   </component>
@@ -236,26 +212,26 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="549" y="168" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1586174436472" />
-    <state width="1493" height="235" key="GridCell.Tab.0.bottom" timestamp="1587497566183">
+    <state width="1515" height="235" key="GridCell.Tab.0.bottom" timestamp="1587499278843">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1515" height="2" key="GridCell.Tab.0.bottom/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1585755135094" />
-    <state width="1493" height="235" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1587497566183" />
-    <state width="1493" height="235" key="GridCell.Tab.0.center" timestamp="1587497566182">
+    <state width="1515" height="235" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1587499278843" />
+    <state width="1515" height="235" key="GridCell.Tab.0.center" timestamp="1587499278842">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1515" height="2" key="GridCell.Tab.0.center/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1585755135094" />
-    <state width="1493" height="235" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1587497566182" />
-    <state width="1493" height="235" key="GridCell.Tab.0.left" timestamp="1587497566182">
+    <state width="1515" height="235" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1587499278842" />
+    <state width="1515" height="235" key="GridCell.Tab.0.left" timestamp="1587499278842">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1515" height="2" key="GridCell.Tab.0.left/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1585755135094" />
-    <state width="1493" height="235" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1587497566182" />
-    <state width="1493" height="235" key="GridCell.Tab.0.right" timestamp="1587497566183">
+    <state width="1515" height="235" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1587499278842" />
+    <state width="1515" height="235" key="GridCell.Tab.0.right" timestamp="1587499278842">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1515" height="2" key="GridCell.Tab.0.right/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1585755135094" />
-    <state width="1493" height="235" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1587497566183" />
+    <state width="1515" height="235" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1587499278842" />
     <state width="1515" height="261" key="GridCell.Tab.1.bottom" timestamp="1587110463327">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -324,10 +300,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1586850042033" />
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1585305164325">
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1587499015160">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1585305164325" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1587499015160" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
