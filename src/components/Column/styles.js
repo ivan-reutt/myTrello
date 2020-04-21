@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const ColumnComponent = styled.div`
+export const StyledColumnComponent = styled.div`
   display: flex;
   position: relative;
   flex-direction: column;
@@ -17,7 +17,7 @@ export const ColumnComponent = styled.div`
   box-shadow: 0 1px 7px rgba(0, 0, 0, 0.2);
 `;
 
-export const TaskListWrap = styled.div`
+export const StyledTaskListWrap = styled.div`
   padding: 2px;
   width: 100%;
   max-height: 500px;

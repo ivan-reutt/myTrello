@@ -1,0 +1,15 @@
+{
+  "boardsButton": "Доски",
+  "boardNoSelect": "Доска не выбрана. Пожалуйста, выберите доску, либо создайте новую.",
+  "addBoard": "Добавить доску",
+  "createBoard": "Создать новую доску",
+  "timePicker": "Применить",
+  "addTask": " Добавить новую задачу",
+  "addColumn": "Добавить новую колонку",
+  "search": "Поиск...",
+  "addTaskForm": "Добавить задачу",
+  "addTaskFormCancel": "Отмена",
+  "addTaskPlaceholder": "Введите имя задачи...",
+  "numCol" : " колонок",
+  "yourBoards": "Ваши доски"
+}

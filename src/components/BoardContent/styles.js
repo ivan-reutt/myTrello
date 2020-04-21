@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const StyledColumnList = styled.div`
+const ColumnList = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -9,4 +9,4 @@ const StyledColumnList = styled.div`
   margin-top: 83px;
 `;
 
-export default StyledColumnList;
+export default ColumnList;

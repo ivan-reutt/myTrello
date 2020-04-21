@@ -1,30 +1,32 @@
 import React from 'react';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
 
-import { number, string, array, func } from 'prop-types';
+import { number, string, func, arrayOf, object } from 'prop-types';
 import ColumnTitle from 'components/ColumnTitle/index';
-import Task from 'components/Task/index';
 import AddTask from 'components/AddTask/index';
 
-import { ColumnComponent, TaskListWrap } from './styles';
+import ColumnContent from 'components/ColumnContent/index';
+import { StyledColumnComponent } from './styles';
 
-const Column = (props) => {
-  const {
-    idBoard,
-    id,
-    title,
-    editColumn,
-    delColumn,
-    delTask,
-    editTask,
-    addTask,
-    tasks,
-    index,
-  } = props;
+const Column = ({
+  idBoard,
+  id,
+  title,
+  editColumn,
+  delColumn,
+  delTask,
+  editTask,
+  addTask,
+  tasks,
+  index,
+}) => {
   return (
     <Draggable draggableId={`${id}column`} index={index}>
       {(provided) => (
-        <ColumnComponent ref={provided.innerRef} {...provided.draggableProps}>
+        <StyledColumnComponent
+          ref={provided.innerRef}
+          {...provided.draggableProps}
+        >
           <ColumnTitle
             provided={provided}
             title={title}
@@ -36,29 +38,18 @@ const Column = (props) => {
           <Droppable droppableId={`${id}`} type="task">
             {/* eslint-disable-next-line no-shadow */}
             {(provided) => (
-              <TaskListWrap
-                ref={provided.innerRef}
-                {...provided.droppableProps}
-              >
-                {/* eslint-disable-next-line no-shadow */}
-                {tasks.map((elem, index) => (
-                  <Task
-                    idBoard={idBoard}
-                    key={elem.id}
-                    id={id}
-                    taskId={elem.id}
-                    delTask={delTask}
-                    editTask={editTask}
-                    title={elem.title}
-                    index={index}
-                  />
-                ))}
-                {provided.placeholder}
-              </TaskListWrap>
+              <ColumnContent
+                idBoard={idBoard}
+                id={id}
+                delTask={delTask}
+                editTask={editTask}
+                provided={provided}
+                tasks={tasks}
+              />
             )}
           </Droppable>
           <AddTask idBoard={idBoard} id={id} addTask={addTask} />
-        </ColumnComponent>
+        </StyledColumnComponent>
       )}
     </Draggable>
   );
@@ -69,7 +60,7 @@ Column.propTypes = {
   idBoard: number.isRequired,
   title: string.isRequired,
   index: number.isRequired,
-  tasks: array.isRequired,
+  tasks: arrayOf(object).isRequired,
   editColumn: func.isRequired,
   delColumn: func.isRequired,
   delTask: func.isRequired,

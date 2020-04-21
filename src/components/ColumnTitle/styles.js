@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const ColumnTitleWrap = styled.div`
+export const StyledColumnTitleWrap = styled.div`
   display: flex;
   align-items: center;
   flex-direction: row;
@@ -13,7 +13,7 @@ export const ColumnTitleWrap = styled.div`
   position: relative;
 `;
 
-export const ColumnTitleButton = styled.button`
+export const StyledColumnTitleButton = styled.button`
   border: none;
   border-radius: 2px;
   color: #555;
@@ -30,15 +30,15 @@ export const ColumnTitleButton = styled.button`
   }
 `;
 
-export const ColumnTitleTextarea = styled.textarea`
+export const StyledColumnTitleTextarea = styled.textarea`
   padding: 2px;
   flex-grow: 1;
   resize: none;
   background-color: #fffadf;
-  font-size: 18px;
+  font-size: ${({ theme }) => theme.columnFontSize};
   cursor: pointer;
   overflow: hidden;
-  font-weight: 500;
+  font-weight: ${({ theme }) => theme.bold};
   &:focus {
     outline: none;
     border: 1px solid #ffc000;
@@ -46,13 +46,13 @@ export const ColumnTitleTextarea = styled.textarea`
   }
 `;
 
-export const ColumnTitleText = styled.span`
+export const StyledColumnTitleText = styled.span`
   display: inline-block;
   word-wrap: break-word;
   word-break: break-all;
   border: 1px solid transparent;
   padding: 2px;
   flex-grow: 1;
-  font-size: 18px;
-  font-weight: 500;
+  font-size: ${({ theme }) => theme.columnFontSize};
+  font-weight: ${({ theme }) => theme.bold};
 `;

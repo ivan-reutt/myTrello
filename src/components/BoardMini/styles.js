@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 
-export const BoardMiniWrap = styled.div`
+export const StyledBoardMiniWrap = styled.div`
   position: relative;
   &:hover button {
     display: flex;
   }
 `;
 
-export const BoardMiniContent = styled.div`
+export const StyledBoardMiniContent = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -26,16 +26,16 @@ export const BoardMiniContent = styled.div`
   & span {
     word-break: break-word;
     text-align: center;
-    font-size: 16px;
+    font-size: ${({ theme }) => theme.boardMiniFontSize};
     overflow: hidden;
     max-height: 60px;
     &:first-of-type {
-      font-weight: 500;
+      font-weight: ${({ theme }) => theme.bold};
     }
   }
 `;
 
-export const BoardMiniButton = styled.button`
+export const StyledBoardMiniButton = styled.button`
   justify-content: center;
   align-items: center;
   position: absolute;

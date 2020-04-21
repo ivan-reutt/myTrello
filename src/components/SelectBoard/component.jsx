@@ -1,34 +1,33 @@
 import React from 'react';
-import { array, func, number } from 'prop-types';
+import { arrayOf, func, number, object } from 'prop-types';
+import { FormattedMessage } from 'react-intl';
 
 import {
-  SelectBoardWrap,
-  BoardMiniList,
-  BoardAdd,
-  BoardAddForm,
+  StyledSelectBoardWrap,
+  StyledBoardMiniList,
+  StyledBoardAdd,
+  StyledBoardAddForm,
 } from 'components/SelectBoard/styles';
 import BoardMini from 'components/BoardMini/index';
 
-class SelectBoard extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      showFormAddBoard: false,
-      titleBoard: '',
-    };
-  }
+class SelectBoard extends React.PureComponent {
+  state = {
+    IsShowFormAddBoard: false,
+    titleBoard: '',
+  };
 
   showFormAddBoard = () => {
-    this.setState({ showFormAddBoard: true });
+    this.setState({ IsShowFormAddBoard: true });
   };
 
   handleSubmit = (event) => {
     event.preventDefault();
     const { titleBoard } = this.state;
     const { addBoard } = this.props;
+
     if (titleBoard) {
       addBoard(titleBoard);
-      this.setState({ titleBoard: '', showFormAddBoard: false });
+      this.setState({ titleBoard: '', IsShowFormAddBoard: false });
     }
   };
 
@@ -47,12 +46,13 @@ class SelectBoard extends React.Component {
       showBoardList,
       selectedBoardId,
     } = this.props;
-    const { showFormAddBoard } = this.state;
+    const { IsShowFormAddBoard } = this.state;
     return (
-      <SelectBoardWrap>
-        <h1>Your boards</h1>
-
-        <BoardMiniList>
+      <StyledSelectBoardWrap>
+        <h1>
+          <FormattedMessage id="yourBoards" defaultMessage="Your boards" />
+        </h1>
+        <StyledBoardMiniList>
           {boards.map((item) => (
             <BoardMini
               title={item.titleBoard}
@@ -65,22 +65,29 @@ class SelectBoard extends React.Component {
               delBoard={delBoard}
             />
           ))}
-          <BoardAdd onClick={this.showFormAddBoard}>
-            {!showFormAddBoard ? (
-              <span>Create new board</span>
-            ) : (
-              <BoardAddForm onSubmit={this.handleSubmit}>
+          <StyledBoardAdd onClick={this.showFormAddBoard}>
+            {IsShowFormAddBoard ? (
+              <StyledBoardAddForm onSubmit={this.handleSubmit}>
                 <input
                   type="text"
-                  onChange={(event) => this.handleChange(event)}
+                  onChange={this.handleChange}
                   maxLength={100}
                 />
-                <button type="submit">Add board</button>
-              </BoardAddForm>
+                <button type="submit">
+                  <FormattedMessage id="addBoard" defaultMessage="Add board" />
+                </button>
+              </StyledBoardAddForm>
+            ) : (
+              <span>
+                <FormattedMessage
+                  id="createBoard"
+                  defaultMessage="Create new board"
+                />
+              </span>
             )}
-          </BoardAdd>
-        </BoardMiniList>
-      </SelectBoardWrap>
+          </StyledBoardAdd>
+        </StyledBoardMiniList>
+      </StyledSelectBoardWrap>
     );
   }
 }
@@ -90,7 +97,7 @@ SelectBoard.defaultProps = {
 };
 
 SelectBoard.propTypes = {
-  boards: array.isRequired,
+  boards: arrayOf(object).isRequired,
   selectedBoardId: number,
   addBoard: func.isRequired,
   selectBoard: func.isRequired,

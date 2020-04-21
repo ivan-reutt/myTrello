@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const HeaderWrap = styled.div`
+export const StyledHeaderWrap = styled.div`
   position: fixed;
   top: 0;
   left: 0;
@@ -12,7 +12,7 @@ export const HeaderWrap = styled.div`
   background-color: #d1bf52;
 `;
 
-export const NoBoardSelected = styled.span`
+export const StyledNoBoardSelected = styled.span`
   font-size: 20px;
   display: inline-block;
   width: 400px;
@@ -21,11 +21,11 @@ export const NoBoardSelected = styled.span`
   color: ${({ theme }) => theme.text};
 `;
 
-export const ShowBoardsButton = styled.button`
+export const StyledShowBoardsButton = styled.button`
   display: flex;
   align-items: center;
   font-size: 18px;
-  font-weight: 500;
+  font-weight: ${({ theme }) => theme.bold};
   padding: 2px 15px;
   margin-right: 10px;
   border: none;
@@ -41,7 +41,7 @@ export const ShowBoardsButton = styled.button`
   }
 `;
 
-export const SearchInput = styled.input`
+export const StyledSearchInput = styled.input`
   padding-left: 5px;
   font-size: 16px;
   border-radius: 2px;

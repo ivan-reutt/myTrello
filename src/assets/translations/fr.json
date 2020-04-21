@@ -1,0 +1,15 @@
+{
+  "boardsButton": "Boards",
+  "boardNoSelect": "Tableau non sélectionné. Veuillez choisir votre tableau ou en créer un nouveau.",
+  "addBoard": "Ajouter une carte",
+  "createBoard": "Créer une nouvelle carte",
+  "timePicker": "Appliquer",
+  "addTask": "Ajouter une nouvelle tâche",
+  "addColumn": "Ajouter une nouvelle colonne",
+  "search": "Chercher...",
+  "addTaskForm": "Ajouter une tâche",
+  "addTaskFormCancel": "Annuler",
+  "addTaskPlaceholder": "Entrez le nom de la tâche ...",
+  "numCol": "colonnes",
+  "yourBoards": "Vos boards"
+}

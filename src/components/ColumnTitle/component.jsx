@@ -3,37 +3,36 @@ import React, { createRef } from 'react';
 import { string, func, number, object } from 'prop-types';
 
 import {
-  ColumnTitleWrap,
-  ColumnTitleButton,
-  ColumnTitleTextarea,
-  ColumnTitleText,
+  StyledColumnTitleWrap,
+  StyledColumnTitleButton,
+  StyledColumnTitleTextarea,
+  StyledColumnTitleText,
 } from './styles';
 
 class ColumnTitle extends React.Component {
   textareaRef = createRef();
 
-  constructor(props) {
-    super(props);
-    const { title } = this.props;
-    this.state = {
-      title,
-      showTextarea: false,
-    };
-  }
+  state = {
+    title: this.props.title,
+    IsShowTextarea: false,
+  };
 
-  handleChange = (element, defaultHeight) => {
+  handleChange = (element) => {
+    const defaultHeightTextarea = '29px';
+
     if (element.target.value.trim()) {
       if (element) {
         const target = element.target ? element.target : element;
-        target.style.height = defaultHeight;
+        target.style.height = defaultHeightTextarea;
         target.style.height = `${target.scrollHeight}px`;
+
         this.setState({ title: element.target.value });
       }
     }
   };
 
   handleKeyDown = (ref) => {
-    if (ref.keyCode === 13 || ref.keyCode === 27) {
+    if (ref.key === 'Enter' || ref.key === 'Escape') {
       ref.preventDefault();
       ref.target.blur();
     }
@@ -41,47 +40,52 @@ class ColumnTitle extends React.Component {
 
   handleBlur = (id, title) => {
     const { editColumn, idBoard } = this.props;
+
     editColumn(idBoard, id, title);
-    this.setState({ showTextarea: false });
+    this.setState({ IsShowTextarea: false });
   };
 
   handleClick = () => {
-    this.setState({ showTextarea: true });
+    this.setState({ IsShowTextarea: true });
   };
 
-  handleFocus = (e) => {
-    e.target.select();
+  handleFocus = (event) => {
+    event.target.select();
   };
 
   render() {
     const { idBoard, id, delColumn, provided } = this.props;
-    const { title, showTextarea } = this.state;
-    const defaultRows = Math.ceil(title.length / 25);
+    const { title, IsShowTextarea } = this.state;
+    const symbolsInRow = 25;
+    const defaultRows = Math.ceil(title.length / symbolsInRow);
     return (
-      <ColumnTitleWrap>
-        {!showTextarea ? (
-          <ColumnTitleText
-            onClick={this.handleClick}
-            {...provided.dragHandleProps}
-          >
-            {title}
-          </ColumnTitleText>
-        ) : (
-          <ColumnTitleTextarea
+      <StyledColumnTitleWrap>
+        {IsShowTextarea ? (
+          <StyledColumnTitleTextarea
             defaultValue={title}
             ref={this.textareaRef}
             autoFocus
             rows={defaultRows}
             onFocus={this.handleFocus}
-            onChange={(event) => this.handleChange(event, '29px')}
-            onKeyDown={(ref) => this.handleKeyDown(ref)}
+            onChange={this.handleChange}
+            onKeyDown={this.handleKeyDown}
             onBlur={() => this.handleBlur(id, title)}
           />
+        ) : (
+          <StyledColumnTitleText
+            onClick={this.handleClick}
+            {...provided.dragHandleProps}
+          >
+            {title}
+          </StyledColumnTitleText>
         )}
-        <ColumnTitleButton type="button" onClick={() => delColumn(idBoard, id)}>
+        <StyledColumnTitleButton
+          type="button"
+          onClick={() => delColumn(idBoard, id)}
+        >
           <i className="fas fa-times" />
-        </ColumnTitleButton>
-      </ColumnTitleWrap>
+        </StyledColumnTitleButton>
+      </StyledColumnTitleWrap>
     );
   }
 }

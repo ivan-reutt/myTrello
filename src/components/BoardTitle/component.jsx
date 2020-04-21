@@ -1,36 +1,36 @@
 import React, { createRef } from 'react';
 
-import { BoardTitleText, BoardTitleInput } from 'components/BoardTitle/styles';
+import {
+  StyledBoardTitleText,
+  StyledBoardTitleInput,
+} from 'components/BoardTitle/styles';
 import { func, number, string } from 'prop-types';
 
 class BoardTitle extends React.Component {
   inputRef = createRef();
 
-  constructor(props) {
-    super(props);
-    const { value } = this.props;
-    const { length } = value;
-    this.state = {
-      editBoardTitle: false,
-      title: value,
-      size: length,
-    };
-  }
+  state = {
+    IsEditBoardTitle: false,
+    title: this.props.value,
+    size: this.props.value.length,
+  };
 
   toggleEditTitle = () => {
-    this.setState({ editBoardTitle: true });
+    this.setState({ IsEditBoardTitle: true });
   };
 
   handleChange = (event) => {
     const { value } = event.target;
+    const fixCoefficient = 1.05;
+
     if (value.trim()) {
       this.setState({ title: value });
-      this.setState({ size: value.length * 1.05 });
+      this.setState({ size: value.length * fixCoefficient });
     }
   };
 
   handleKeyDown = (ref) => {
-    if (ref.keyCode === 13 || ref.keyCode === 27) {
+    if (ref.key === 'Enter' || ref.key === 'Escape') {
       ref.preventDefault();
       ref.target.blur();
     }
@@ -39,31 +39,32 @@ class BoardTitle extends React.Component {
   handleBlur = () => {
     const { title } = this.state;
     const { editBoard, idBoard } = this.props;
+
     editBoard(idBoard, title);
-    this.setState({ editBoardTitle: false });
+    this.setState({ IsEditBoardTitle: false });
   };
 
   render() {
     const { value } = this.props;
-    const { editBoardTitle, size } = this.state;
+    const { IsEditBoardTitle, size } = this.state;
     return (
       <div>
-        {!editBoardTitle ? (
-          <BoardTitleText onClick={this.toggleEditTitle}>
-            {value}
-          </BoardTitleText>
-        ) : (
-          <BoardTitleInput
+        {IsEditBoardTitle ? (
+          <StyledBoardTitleInput
             type="text"
             defaultValue={value}
             ref={this.inputRef}
             autoFocus
             onChange={this.handleChange}
-            onKeyDown={(ref) => this.handleKeyDown(ref)}
+            onKeyDown={this.handleKeyDown}
             onBlur={this.handleBlur}
             size={size}
             maxLength={120}
           />
+        ) : (
+          <StyledBoardTitleText onClick={this.toggleEditTitle}>
+            {value}
+          </StyledBoardTitleText>
         )}
       </div>
     );

@@ -1,46 +1,44 @@
 import React from 'react';
 import { Draggable } from 'react-beautiful-dnd';
 import { number, string, func } from 'prop-types';
-import DateTimePicker from 'react-datetime-picker';
+import Calendar from 'components/Calendar/index';
 
 import {
-  TaskWrap,
-  TaskTextarea,
-  TaskTitle,
-  TaskButtonGroup,
-  TaskButton,
-  TaskTextWrap,
-  TimePickerWrap,
-  TimePicker,
-  TimePickerButton,
+  StyledTaskWrap,
+  StyledTaskTextarea,
+  StyledTaskTitle,
+  StyledTaskButtonGroup,
+  StyledTaskButton,
+  StyledTaskTextWrap,
 } from './styles';
 
 class Task extends React.Component {
-  constructor(props) {
-    super(props);
-    const { title } = this.props;
-    this.state = {
-      edit: false,
-      title,
-      showTimer: false,
-      date: new Date(),
-      bgc: '#fffadf',
-    };
-  }
+  state = {
+    isEdit: false,
+    title: this.props.title,
+    isShowTimer: false,
+    date: new Date(),
+    bgc: '#fffadf',
+  };
 
   handleEdit = () => {
     const { idBoard, editTask, id, taskId } = this.props;
-    const { edit, title } = this.state;
-    this.setState({ edit: !edit });
-    if (edit) {
+    const { isEdit, title } = this.state;
+
+    this.setState({ isEdit: !isEdit });
+
+    if (isEdit) {
       editTask(idBoard, id, title, taskId);
     }
   };
 
-  handleChange = (element, defaultHeight) => {
+  handleChange = (element) => {
+    const defaultHeightTextarea = '26px';
+
     if (element) {
       const target = element.target ? element.target : element;
-      target.style.height = defaultHeight;
+
+      target.style.height = defaultHeightTextarea;
       target.style.height = `${target.scrollHeight}px`;
       this.setState({ title: element.target.value });
     }
@@ -49,8 +47,9 @@ class Task extends React.Component {
   handleKeyDown = (event) => {
     const { idBoard, editTask, id, taskId } = this.props;
     const { title } = this.state;
+
     if (event.keyCode === 13) {
-      this.setState({ edit: false });
+      this.setState({ isEdit: false });
       editTask(idBoard, id, title, taskId);
     }
   };
@@ -66,76 +65,67 @@ class Task extends React.Component {
         : timeRemaining < msInDay
         ? '#ff9400'
         : '#fffadf';
+
     this.setState({ date, bgc });
   };
 
   showTimer = () => {
-    const { showTimer } = this.state;
-    this.setState({ showTimer: !showTimer });
+    const { isShowTimer } = this.state;
+    this.setState({ isShowTimer: !isShowTimer });
   };
 
   render() {
     const { idBoard, id, taskId, delTask, index } = this.props;
-    const { edit, title, bgc, showTimer, date } = this.state;
-    const defaultRows = Math.ceil(title.length / 35);
+    const { isEdit, title, bgc, isShowTimer, date } = this.state;
+    const symbolsInRow = 35;
+    const defaultRows = Math.ceil(title.length / symbolsInRow);
 
     return (
       <Draggable draggableId={`${taskId}task`} index={index}>
         {(provided, snapshot) => (
-          <TaskWrap
-            className={edit ? 'editTask' : ''}
+          <StyledTaskWrap
+            className={isEdit && 'editTask'}
             ref={provided.innerRef}
             {...provided.draggableProps}
             {...provided.dragHandleProps}
             isDragging={snapshot.isDragging}
             backgroundColor={bgc}
           >
-            <TaskTextWrap>
-              {!edit ? (
-                <TaskTitle>{title}</TaskTitle>
-              ) : (
-                <TaskTextarea
+            <StyledTaskTextWrap>
+              {isEdit ? (
+                <StyledTaskTextarea
                   defaultValue={title}
-                  disabled={!edit}
+                  disabled={!isEdit}
                   rows={defaultRows}
-                  onChange={(event) => this.handleChange(event, '26px')}
-                  onKeyDown={(event) => this.handleKeyDown(event)}
+                  onChange={this.handleChange}
+                  onKeyDown={this.handleKeyDown}
                 />
+              ) : (
+                <StyledTaskTitle>{title}</StyledTaskTitle>
               )}
-              <TaskButtonGroup className={edit ? 'edit' : ''}>
-                <TaskButton type="button" onClick={this.handleEdit}>
-                  <i className={!edit ? 'fas fa-edit' : 'fas fa-check'} />
-                </TaskButton>
-                <TaskButton
+              <StyledTaskButtonGroup className={isEdit && 'edit'}>
+                <StyledTaskButton type="button" onClick={this.handleEdit}>
+                  <i className={isEdit ? 'fas fa-check' : 'fas fa-edit'} />
+                </StyledTaskButton>
+                <StyledTaskButton
                   type="button"
                   onClick={() => delTask(idBoard, id, taskId)}
                 >
                   <i className="fas fa-times" />
-                </TaskButton>
-                <TaskButton type="button" onClick={this.showTimer}>
+                </StyledTaskButton>
+                <StyledTaskButton type="button" onClick={this.showTimer}>
                   <i className="fas fa-hourglass-start" />
-                </TaskButton>
-              </TaskButtonGroup>
-            </TaskTextWrap>
-            {showTimer ? (
-              <TimePickerWrap>
-                <TimePicker>
-                  <DateTimePicker
-                    onChange={this.onChange}
-                    value={date}
-                    disableClock
-                    clearIcon={null}
-                    showLeadingZeros
-                  />
-                  <TimePickerButton type="button" onClick={this.showTimer}>
-                    Apply
-                  </TimePickerButton>
-                </TimePicker>
-              </TimePickerWrap>
-            ) : (
-              ''
+                </StyledTaskButton>
+              </StyledTaskButtonGroup>
+            </StyledTaskTextWrap>
+            {isShowTimer && (
+              <Calendar
+                onChange={this.onChange}
+                showTimer={this.showTimer}
+                value={date}
+              />
             )}
-          </TaskWrap>
+          </StyledTaskWrap>
         )}
       </Draggable>
     );

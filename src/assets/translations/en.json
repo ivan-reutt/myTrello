@@ -1,0 +1,15 @@
+{
+  "boardsButton": "Boards",
+  "boardNoSelect": "Board not selected. Please, choose your board or create new.",
+  "addBoard": "Add board",
+  "createBoard": "Create new board",
+  "timePicker": "Apply",
+  "addTask": " Add new task",
+  "addColumn": "Add new column",
+  "search": "Search...",
+  "addTaskForm": "Add task",
+  "addTaskFormCancel": "Cancel",
+  "addTaskPlaceholder": "Enter task name...",
+  "numCol" : " columns",
+  "yourBoards": "Your boards"
+}

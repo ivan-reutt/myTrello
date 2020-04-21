@@ -1,14 +1,11 @@
 import React from 'react';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
-import { array, func, number, string } from 'prop-types';
+import { arrayOf, func, number, object, string } from 'prop-types';
 
 import BoardTitle from 'components/BoardTitle/index';
-import Column from 'components/Column/index';
-import AddColumn from 'components/AddColumn/index';
+import BoardContent from 'components/BoardContent/index';
 
-import ColumnList from './styles';
-
-class Board extends React.Component {
+class Board extends React.PureComponent {
   onDragEnd = (result) => {
     const { destination, source, type } = result;
     const { boards, dndColumn, dndTaskIn, dndTaskOut, idBoard } = this.props;
@@ -29,8 +26,10 @@ class Board extends React.Component {
     if (type === 'column') {
       const newColumnList = [...columns];
       const dragColumn = { ...newColumnList[source.index] };
+
       newColumnList.splice(source.index, 1);
       newColumnList.splice(destination.index, 0, dragColumn);
+
       dndColumn(idBoard, newColumnList);
     }
 
@@ -45,8 +44,10 @@ class Board extends React.Component {
 
       if (+source.droppableId === +destination.droppableId) {
         const newTasks = [...dragColumn.tasks];
+
         newTasks.splice(source.index, 1);
         newTasks.splice(destination.index, 0, { ...dropTask });
+
         dndTaskIn(idBoard, +source.droppableId, newTasks);
         return;
       }
@@ -82,6 +83,7 @@ class Board extends React.Component {
     } = this.props;
     const activeBoard = boards.find((item) => item.id === idBoard);
     const { columns, titleBoard } = activeBoard;
+
     return (
       <DragDropContext onDragEnd={this.onDragEnd}>
         <BoardTitle
@@ -95,27 +97,18 @@ class Board extends React.Component {
           type="column"
         >
           {(provided) => (
-            <ColumnList ref={provided.innerRef} {...provided.droppableProps}>
-              {columns
-                .filter((item) => item.title.toLowerCase().includes(searchText))
-                .map((elem, index) => (
-                  <Column
-                    idBoard={idBoard}
-                    tasks={elem.tasks}
-                    id={elem.id}
-                    key={elem.id}
-                    title={elem.title}
-                    editColumn={editColumn}
-                    delColumn={delColumn}
-                    addTask={addTask}
-                    delTask={delTask}
-                    editTask={editTask}
-                    index={index}
-                  />
-                ))}
-              {provided.placeholder}
-              <AddColumn addColumn={addColumn} idBoard={idBoard} />
-            </ColumnList>
+            <BoardContent
+              searchText={searchText}
+              addColumn={addColumn}
+              editColumn={editColumn}
+              delColumn={delColumn}
+              delTask={delTask}
+              editTask={editTask}
+              addTask={addTask}
+              provided={provided}
+              columns={columns}
+              idBoard={idBoard}
+            />
           )}
         </Droppable>
       </DragDropContext>
@@ -124,7 +117,7 @@ class Board extends React.Component {
 }
 
 Board.propTypes = {
-  boards: array.isRequired,
+  boards: arrayOf(object).isRequired,
   searchText: string.isRequired,
   idBoard: number.isRequired,
   addColumn: func.isRequired,

@@ -1,9 +1,10 @@
 import React from 'react';
 import { func, number } from 'prop-types';
+import { FormattedMessage } from 'react-intl';
 
 import AddTaskForm from 'components/AddTaskForm/index';
 
-import { AddTaskWrap, AddTaskButton } from './styles';
+import { StyledAddTaskWrap, StyledAddTaskButton } from './styles';
 
 class AddTask extends React.Component {
   state = {
@@ -23,7 +24,7 @@ class AddTask extends React.Component {
     const { add } = this.state;
     const { idBoard, id, addTask } = this.props;
     return (
-      <AddTaskWrap>
+      <StyledAddTaskWrap>
         {add ? (
           <AddTaskForm
             idBoard={idBoard}
@@ -34,11 +35,12 @@ class AddTask extends React.Component {
             handleSubmit={this.handleSubmit}
           />
         ) : (
-          <AddTaskButton onClick={this.handleClick}>
-            <i className="fas fa-plus" /> Add new task
-          </AddTaskButton>
+          <StyledAddTaskButton onClick={this.handleClick}>
+            <i className="fas fa-plus" />
+            <FormattedMessage id="addTask" defaultMessage=" Add new task" />
+          </StyledAddTaskButton>
         )}
-      </AddTaskWrap>
+      </StyledAddTaskWrap>
     );
   }
 }

@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
-const ToggleContainer = styled.button`
+const StyledToggleContainer = styled.button`
   position: fixed;
   top: 5px;
   left: calc(50% - 45px);
-  background: ${({ theme }) => theme.gradient};
+  background: ${({ theme }) => theme.toggleTheme};
   border: none;
   border-radius: 30px;
   cursor: pointer;
@@ -41,4 +41,4 @@ const ToggleContainer = styled.button`
   }
 `;
 
-export default ToggleContainer;
+export default StyledToggleContainer;

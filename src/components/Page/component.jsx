@@ -1,29 +1,31 @@
 import React from 'react';
-import { array, func, number } from 'prop-types';
+import { arrayOf, object, func, number } from 'prop-types';
+import { FormattedMessage } from 'react-intl';
 
 import SelectBoard from 'components/SelectBoard/index';
 
 import {
-  HeaderWrap,
-  NoBoardSelected,
-  ShowBoardsButton,
-  SearchInput,
+  StyledHeaderWrap,
+  StyledNoBoardSelected,
+  StyledShowBoardsButton,
+  StyledSearchInput,
 } from 'components/Page/styles';
 import BoardContainer from 'components/Board/container';
 
-class Page extends React.Component {
+class Page extends React.PureComponent {
   state = {
-    showBoardList: true,
+    isShowBoardList: true,
     searchText: '',
   };
 
   showBoardList = () => {
-    const { showBoardList } = this.state;
-    this.setState({ showBoardList: !showBoardList });
+    const { isShowBoardList } = this.state;
+    this.setState({ isShowBoardList: !isShowBoardList });
   };
 
-  changeSearchInput = (e) => {
-    const { value } = e.target;
+  changeSearchInput = (event) => {
+    const { value } = event.target;
+
     if (value.trim()) {
       this.setState({ searchText: value.toLowerCase() });
     } else this.setState({ searchText: '' });
@@ -37,25 +39,33 @@ class Page extends React.Component {
       delBoard,
       selectedBoardId,
     } = this.props;
-    const { showBoardList, searchText } = this.state;
+    const { isShowBoardList, searchText } = this.state;
     return (
       <div>
-        <HeaderWrap>
-          <ShowBoardsButton type="button" onClick={this.showBoardList}>
-            Boards
+        <StyledHeaderWrap>
+          <StyledShowBoardsButton type="button" onClick={this.showBoardList}>
+            <FormattedMessage
+              id="boardsButton"
+              defaultMessage="Boards"
+              description="Name button"
+            />
             <i
               className={
-                showBoardList ? 'fas fa-angle-up' : 'fas fa-angle-down'
+                isShowBoardList ? 'fas fa-angle-up' : 'fas fa-angle-down'
               }
             />
-          </ShowBoardsButton>
-          <SearchInput
-            type="text"
-            onChange={this.changeSearchInput}
-            placeholder="Search..."
-          />
-        </HeaderWrap>
-        {showBoardList ? (
+          </StyledShowBoardsButton>
+          <FormattedMessage id="search" defaultMessage="Search...">
+            {(placeholder) => (
+              <StyledSearchInput
+                type="text"
+                onChange={this.changeSearchInput}
+                placeholder={placeholder}
+              />
+            )}
+          </FormattedMessage>
+        </StyledHeaderWrap>
+        {isShowBoardList && (
           <SelectBoard
             addBoard={addBoard}
             delBoard={delBoard}
@@ -64,15 +74,16 @@ class Page extends React.Component {
             showBoardList={this.showBoardList}
             selectedBoardId={selectedBoardId}
           />
-        ) : (
-          ''
         )}
         {selectedBoardId ? (
           <BoardContainer searchText={searchText} />
         ) : (
-          <NoBoardSelected>
-            Please, choose your board or create new.
-          </NoBoardSelected>
+          <StyledNoBoardSelected>
+            <FormattedMessage
+              id="boardNoSelect"
+              defaultMessage="Board not selected. Please, choose your board or create new."
+            />
+          </StyledNoBoardSelected>
         )}
       </div>
     );
@@ -84,7 +95,7 @@ Page.defaultProps = {
 };
 
 Page.propTypes = {
-  boards: array.isRequired,
+  boards: arrayOf(object).isRequired,
   selectedBoardId: number,
   addBoard: func.isRequired,
   selectBoard: func.isRequired,

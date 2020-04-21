@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const AddColumnForm = styled.form`
+export const StyledAddColumnForm = styled.form`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -8,7 +8,7 @@ export const AddColumnForm = styled.form`
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
 `;
 
-export const AddColumnInput = styled.input`
+export const StyledAddColumnInput = styled.input`
   border: 2px solid transparent;
   background: transparent;
   width: 240px;
@@ -30,7 +30,7 @@ export const AddColumnInput = styled.input`
   }
 `;
 
-export const AddColumnButton = styled.button`
+export const StyledAddColumnButton = styled.button`
   border: none;
   background: transparent;
   color: #555;

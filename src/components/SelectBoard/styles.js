@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const SelectBoardWrap = styled.div`
+export const StyledSelectBoardWrap = styled.div`
   position: fixed;
   top: 45px;
   left: 0;
@@ -16,13 +16,13 @@ export const SelectBoardWrap = styled.div`
   z-index: 100;
 `;
 
-export const BoardMiniList = styled.div`
+export const StyledBoardMiniList = styled.div`
   display: flex;
   flex-wrap: wrap;
   max-width: 70%;
 `;
 
-export const BoardAdd = styled.div`
+export const StyledBoardAdd = styled.div`
   position: relative;
   margin: 5px;
   cursor: pointer;
@@ -38,12 +38,12 @@ export const BoardAdd = styled.div`
   }
 `;
 
-export const BoardAddForm = styled.form`
+export const StyledBoardAddForm = styled.form`
   width: 90%;
   text-align: center;
   & input {
     border: 1px solid #ffc000;
-    font-size: 16px;
+    font-size: ${({ theme }) => theme.addBoardFontSize};
     outline: none;
     margin-bottom: 10px;
     padding: 3px;
@@ -51,7 +51,7 @@ export const BoardAddForm = styled.form`
   }
   & button {
     display: inline-block;
-    font-size: 16px;
+    font-size: ${({ theme }) => theme.addBoardFontSize};
     border: none;
     border-radius: 2px;
     margin: 0 auto;

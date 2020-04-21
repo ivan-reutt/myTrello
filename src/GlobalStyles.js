@@ -1,11 +1,11 @@
 import { createGlobalStyle } from 'styled-components';
 
-import ProximaNovaRegularEot from 'fonts/ProximaNova-Regular.eot';
-import ProximaNovaRegularTtf from 'fonts/ProximaNova-Regular.ttf';
-import ProximaNovaRegularWoff from 'fonts/ProximaNova-Regular.woff';
-import ProximaNovaSemiboldEot from 'fonts/ProximaNova-Semibold.eot';
-import ProximaNovaSemiboldWoff from 'fonts/ProximaNova-Semibold.woff';
-import ProximaNovaSemiboldTtf from 'fonts/ProximaNova-Semibold.ttf';
+import ProximaNovaRegularEot from 'assets/fonts/ProximaNova-Regular.eot';
+import ProximaNovaRegularTtf from 'assets/fonts/ProximaNova-Regular.ttf';
+import ProximaNovaRegularWoff from 'assets/fonts/ProximaNova-Regular.woff';
+import ProximaNovaSemiboldEot from 'assets/fonts/ProximaNova-Semibold.eot';
+import ProximaNovaSemiboldWoff from 'assets/fonts/ProximaNova-Semibold.woff';
+import ProximaNovaSemiboldTtf from 'assets/fonts/ProximaNova-Semibold.ttf';
 
 const GlobalStyle = createGlobalStyle`
   @font-face {

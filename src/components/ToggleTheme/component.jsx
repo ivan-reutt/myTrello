@@ -1,17 +1,17 @@
 import React from 'react';
 import { func, string } from 'prop-types';
 
-import { ReactComponent as MoonIcon } from 'icons/moon.svg';
-import { ReactComponent as SunIcon } from 'icons/sun.svg';
-import ToggleContainer from './styles';
+import { ReactComponent as MoonIcon } from 'assets/icons/moon.svg';
+import { ReactComponent as SunIcon } from 'assets/icons/sun.svg';
+import StyledToggleContainer from './styles';
 
 const ToggleTheme = ({ theme, toggleTheme }) => {
   const isLight = theme === 'light';
   return (
-    <ToggleContainer onClick={toggleTheme} lightTheme={isLight}>
+    <StyledToggleContainer onClick={toggleTheme} lightTheme={isLight}>
       <SunIcon />
       <MoonIcon />
-    </ToggleContainer>
+    </StyledToggleContainer>
   );
 };
 
