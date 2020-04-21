@@ -1,79 +1,63 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { func, number } from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 
-import {
-  StyledAddTaskFormWrap,
-  StyledAddTaskFormTextarea,
-  StyledAddTaskFormButton,
-} from './styles';
+import AddTaskFormTextarea from 'components/AddTaskFormTextArea/index';
+import { StyledAddTaskFormWrap, StyledAddTaskFormButton } from './styles';
 
-class AddTaskForm extends React.Component {
-  state = {
-    title: '',
-  };
+const AddTaskForm = ({ addTask, boardId, columnId, handleClick }) => {
+  const [title, setTitle] = useState('');
 
-  handleSubmit = (e) => {
-    e.preventDefault();
-    const { addTask, idBoard, id } = this.props;
-    const { title } = this.state;
+  const handleSubmit = (event) => {
+    event.preventDefault();
 
     if (title.trim()) {
-      addTask(idBoard, id, title);
+      addTask(boardId, columnId, title);
     }
-    this.setState({ title: '' });
+    setTitle('');
   };
 
-  handleChange = (element) => {
+  const handleChange = (event) => {
     const defaultHeightTextarea = '50px';
-    if (element) {
-      const target = element.target ? element.target : element;
-      target.style.height = defaultHeightTextarea;
-      target.style.height = `${target.scrollHeight}px`;
+    const { target } = event;
 
-      this.setState({ title: element.target.value });
+    if (target.value.trim()) {
+      if (event) {
+        const element = target || event;
+
+        element.style.height = defaultHeightTextarea;
+        element.style.height = `${element.scrollHeight}px`;
+        setTitle(target.value);
+      }
     }
   };
 
-  handleKeyDown = (event) => {
-    if (event.key === 'Enter') this.handleSubmit(event);
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') handleSubmit(event);
   };
 
-  render() {
-    const { title } = this.state;
-    const { handleClick } = this.props;
-    return (
-      <StyledAddTaskFormWrap onSubmit={this.handleSubmit}>
-        <FormattedMessage
-          id="addTaskPlaceholder"
-          defaultMessage="Enter task name"
-        >
-          {(placeholder) => (
-            <StyledAddTaskFormTextarea
-              autoFocus
-              placeholder={placeholder}
-              value={title}
-              onKeyDown={this.handleKeyDown}
-              onChange={this.handleChange}
-            />
-          )}
-        </FormattedMessage>
-        <StyledAddTaskFormButton type="submit">
-          <i className="fas fa-plus" />
-          <FormattedMessage id="addTaskForm" defaultMessage="Add task" />
-        </StyledAddTaskFormButton>
-        <StyledAddTaskFormButton type="button" onClick={handleClick}>
-          <i className="fas fa-times" />
-          <FormattedMessage id="addTaskFormCancel" defaultMessage="Cancel" />
-        </StyledAddTaskFormButton>
-      </StyledAddTaskFormWrap>
-    );
-  }
-}
+  return (
+    <StyledAddTaskFormWrap onSubmit={handleSubmit}>
+      <AddTaskFormTextarea
+        handleKeyDown={handleKeyDown}
+        handleChange={handleChange}
+        value={title}
+      />
+      <StyledAddTaskFormButton type="submit">
+        <i className="fas fa-plus" />
+        <FormattedMessage id="addTaskForm" defaultMessage="Add task" />
+      </StyledAddTaskFormButton>
+      <StyledAddTaskFormButton type="button" onClick={handleClick}>
+        <i className="fas fa-times" />
+        <FormattedMessage id="addTaskFormCancel" defaultMessage="Cancel" />
+      </StyledAddTaskFormButton>
+    </StyledAddTaskFormWrap>
+  );
+};
 
 AddTaskForm.propTypes = {
-  id: number.isRequired,
-  idBoard: number.isRequired,
+  columnId: number.isRequired,
+  boardId: number.isRequired,
   addTask: func.isRequired,
   handleClick: func.isRequired,
 };

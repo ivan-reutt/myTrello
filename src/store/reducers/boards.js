@@ -16,9 +16,9 @@ import {
 const boards = (
   state = [],
   {
-    idBoard,
+    boardId,
     titleBoard,
-    id,
+    columnId,
     title,
     type,
     taskId,
@@ -34,31 +34,31 @@ const boards = (
   switch (type) {
     case ADD_COLUMN:
       return [...state].map((item) => {
-        if (item.id === idBoard) {
+        if (item.id === boardId) {
           return {
             ...item,
-            columns: [...item.columns, { id, title, tasks: [] }],
+            columns: [...item.columns, { id: columnId, title, tasks: [] }],
           };
         }
         return item;
       });
     case DEL_COLUMN:
       return [...state].map((item) => {
-        if (item.id === idBoard) {
+        if (item.id === boardId) {
           return {
             ...item,
-            columns: [...item.columns].filter((elem) => elem.id !== id),
+            columns: [...item.columns].filter((elem) => elem.id !== columnId),
           };
         }
         return item;
       });
     case EDIT_COLUMN:
       return [...state].map((item) => {
-        if (item.id === idBoard) {
+        if (item.id === boardId) {
           return {
             ...item,
             columns: [...item.columns].map((elem) => {
-              if (elem.id === id) {
+              if (elem.id === columnId) {
                 // eslint-disable-next-line no-param-reassign
                 elem.title = title;
               }
@@ -70,11 +70,11 @@ const boards = (
       });
     case ADD_TASK:
       return [...state].map((item) => {
-        if (item.id === idBoard) {
+        if (item.id === boardId) {
           return {
             ...item,
             columns: [...item.columns].map((elem) => {
-              if (elem.id === id) {
+              if (elem.id === columnId) {
                 return {
                   ...elem,
                   tasks: [
@@ -94,11 +94,11 @@ const boards = (
       });
     case DEL_TASK:
       return [...state].map((item) => {
-        if (item.id === idBoard) {
+        if (item.id === boardId) {
           return {
             ...item,
             columns: [...item.columns].map((elem) => {
-              if (elem.id === id) {
+              if (elem.id === columnId) {
                 return {
                   ...elem,
                   tasks: [...elem.tasks].filter(
@@ -115,11 +115,11 @@ const boards = (
       });
     case EDIT_TASK:
       return [...state].map((item) => {
-        if (item.id === idBoard) {
+        if (item.id === boardId) {
           return {
             ...item,
             columns: [...item.columns].map((elem) => {
-              if (elem.id === id) {
+              if (elem.id === columnId) {
                 return {
                   ...elem,
                   tasks: [...elem.tasks].map((task) => {
@@ -139,11 +139,11 @@ const boards = (
       });
     case DND_TASK_IN:
       return [...state].map((item) => {
-        if (item.id === idBoard) {
+        if (item.id === boardId) {
           return {
             ...item,
             columns: [...item.columns].map((elem) => {
-              if (elem.id === id) {
+              if (elem.id === columnId) {
                 return { ...elem, tasks };
               }
               return elem;
@@ -154,7 +154,7 @@ const boards = (
       });
     case DND_TASK_OUT:
       return [...state].map((item) => {
-        if (item.id === idBoard) {
+        if (item.id === boardId) {
           return {
             ...item,
             columns: [...item.columns].map((elem) => {
@@ -172,7 +172,7 @@ const boards = (
       });
     case DND_COLUMN:
       return [...state].map((item) => {
-        if (item.id === idBoard) {
+        if (item.id === boardId) {
           return {
             ...item,
             columns: [...columnsList],
@@ -184,20 +184,20 @@ const boards = (
       return [
         ...state,
         {
-          id: idBoard,
+          id: boardId,
           titleBoard,
           columns: [],
         },
       ];
     case EDIT_BOARD:
       return [...state].map((item) => {
-        if (item.id === idBoard) {
+        if (item.id === boardId) {
           return { ...item, titleBoard };
         }
         return item;
       });
     case DEL_BOARD:
-      return [...state].filter((item) => item.id !== idBoard);
+      return [...state].filter((item) => item.id !== boardId);
     default:
       return state;
   }

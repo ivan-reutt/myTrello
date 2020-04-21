@@ -1,7 +1,7 @@
 import React from 'react';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
 
-import { number, string, func, arrayOf, object } from 'prop-types';
+import { number, string, func, arrayOf, shape } from 'prop-types';
 import ColumnTitle from 'components/ColumnTitle/index';
 import AddTask from 'components/AddTask/index';
 
@@ -9,8 +9,8 @@ import ColumnContent from 'components/ColumnContent/index';
 import { StyledColumnComponent } from './styles';
 
 const Column = ({
-  idBoard,
-  id,
+  boardId,
+  columnId,
   title,
   editColumn,
   delColumn,
@@ -21,7 +21,7 @@ const Column = ({
   index,
 }) => {
   return (
-    <Draggable draggableId={`${id}column`} index={index}>
+    <Draggable draggableId={`${columnId}column`} index={index}>
       {(provided) => (
         <StyledColumnComponent
           ref={provided.innerRef}
@@ -30,25 +30,24 @@ const Column = ({
           <ColumnTitle
             provided={provided}
             title={title}
-            id={id}
-            idBoard={idBoard}
+            columnId={columnId}
+            boardId={boardId}
             editColumn={editColumn}
             delColumn={delColumn}
           />
-          <Droppable droppableId={`${id}`} type="task">
-            {/* eslint-disable-next-line no-shadow */}
-            {(provided) => (
+          <Droppable droppableId={`${columnId}`} type="task">
+            {(providedContent) => (
               <ColumnContent
-                idBoard={idBoard}
-                id={id}
+                boardId={boardId}
+                columnId={columnId}
                 delTask={delTask}
                 editTask={editTask}
-                provided={provided}
+                provided={providedContent}
                 tasks={tasks}
               />
             )}
           </Droppable>
-          <AddTask idBoard={idBoard} id={id} addTask={addTask} />
+          <AddTask boardId={boardId} columnId={columnId} addTask={addTask} />
         </StyledColumnComponent>
       )}
     </Draggable>
@@ -56,11 +55,16 @@ const Column = ({
 };
 
 Column.propTypes = {
-  id: number.isRequired,
-  idBoard: number.isRequired,
+  columnId: number.isRequired,
+  boardId: number.isRequired,
   title: string.isRequired,
   index: number.isRequired,
-  tasks: arrayOf(object).isRequired,
+  tasks: arrayOf(
+    shape({
+      id: number.isRequired,
+      title: string.isRequired,
+    }),
+  ).isRequired,
   editColumn: func.isRequired,
   delColumn: func.isRequired,
   delTask: func.isRequired,

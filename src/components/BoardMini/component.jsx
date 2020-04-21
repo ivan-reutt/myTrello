@@ -10,29 +10,29 @@ import { FormattedMessage } from 'react-intl';
 const BoardMini = (props) => {
   const { selectBoard, showBoardList, selectedBoardId, delBoard } = props;
 
-  const chooseBoard = (id) => {
-    selectBoard(id);
+  const chooseBoard = (boardId) => {
+    selectBoard(boardId);
     showBoardList();
   };
 
-  const deleteBoard = (id) => {
-    if (id === selectedBoardId) {
+  const deleteBoard = (boardId) => {
+    if (boardId === selectedBoardId) {
       selectBoard(null);
-      delBoard(id);
-    } else delBoard(id);
+      delBoard(boardId);
+    } else delBoard(boardId);
   };
 
-  const { id, title, numCol } = props;
+  const { boardId, title, numCol } = props;
   return (
     <StyledBoardMiniWrap>
-      <StyledBoardMiniContent onClick={() => chooseBoard(id)}>
+      <StyledBoardMiniContent onClick={() => chooseBoard(boardId)}>
         <span>{title}</span>
         <span>
           {numCol}
           <FormattedMessage id="numCol" defaultMessages=" columns" />
         </span>
       </StyledBoardMiniContent>
-      <StyledBoardMiniButton type="button" onClick={() => deleteBoard(id)}>
+      <StyledBoardMiniButton type="button" onClick={() => deleteBoard(boardId)}>
         <i className="fas fa-times" />
       </StyledBoardMiniButton>
     </StyledBoardMiniWrap>
@@ -44,7 +44,7 @@ BoardMini.defaultProps = {
 };
 
 BoardMini.propTypes = {
-  id: number.isRequired,
+  boardId: number.isRequired,
   title: string.isRequired,
   numCol: number.isRequired,
   selectedBoardId: number,

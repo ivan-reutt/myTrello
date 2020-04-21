@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { func, number } from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 
@@ -6,48 +6,40 @@ import AddTaskForm from 'components/AddTaskForm/index';
 
 import { StyledAddTaskWrap, StyledAddTaskButton } from './styles';
 
-class AddTask extends React.Component {
-  state = {
-    add: false,
+const AddTask = ({ boardId, columnId, addTask }) => {
+  const [isShowAddForm, setIsShowAddForm] = useState(false);
+
+  const handleClick = () => {
+    setIsShowAddForm(!isShowAddForm);
   };
 
-  handleClick = () => {
-    const { add } = this.state;
-    this.setState({ add: !add });
+  const handleBlur = () => {
+    setIsShowAddForm(false);
   };
 
-  handleBlur = () => {
-    this.setState({ add: false });
-  };
-
-  render() {
-    const { add } = this.state;
-    const { idBoard, id, addTask } = this.props;
-    return (
-      <StyledAddTaskWrap>
-        {add ? (
-          <AddTaskForm
-            idBoard={idBoard}
-            id={id}
-            addTask={addTask}
-            handleBlur={this.handleBlur}
-            handleClick={this.handleClick}
-            handleSubmit={this.handleSubmit}
-          />
-        ) : (
-          <StyledAddTaskButton onClick={this.handleClick}>
-            <i className="fas fa-plus" />
-            <FormattedMessage id="addTask" defaultMessage=" Add new task" />
-          </StyledAddTaskButton>
-        )}
-      </StyledAddTaskWrap>
-    );
-  }
-}
+  return (
+    <StyledAddTaskWrap>
+      {isShowAddForm ? (
+        <AddTaskForm
+          boardId={boardId}
+          columnId={columnId}
+          addTask={addTask}
+          handleBlur={handleBlur}
+          handleClick={handleClick}
+        />
+      ) : (
+        <StyledAddTaskButton onClick={handleClick}>
+          <i className="fas fa-plus" />
+          <FormattedMessage id="addTask" defaultMessage=" Add new task" />
+        </StyledAddTaskButton>
+      )}
+    </StyledAddTaskWrap>
+  );
+};
 
 AddTask.propTypes = {
-  id: number.isRequired,
-  idBoard: number.isRequired,
+  columnId: number.isRequired,
+  boardId: number.isRequired,
   addTask: func.isRequired,
 };
 

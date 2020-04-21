@@ -10,13 +10,13 @@ class BoardTitle extends React.Component {
   inputRef = createRef();
 
   state = {
-    IsEditBoardTitle: false,
+    isEditBoardTitle: false,
     title: this.props.value,
     size: this.props.value.length,
   };
 
   toggleEditTitle = () => {
-    this.setState({ IsEditBoardTitle: true });
+    this.setState({ isEditBoardTitle: true });
   };
 
   handleChange = (event) => {
@@ -38,18 +38,18 @@ class BoardTitle extends React.Component {
 
   handleBlur = () => {
     const { title } = this.state;
-    const { editBoard, idBoard } = this.props;
+    const { editBoard, boardId } = this.props;
 
-    editBoard(idBoard, title);
-    this.setState({ IsEditBoardTitle: false });
+    editBoard(boardId, title);
+    this.setState({ isEditBoardTitle: false });
   };
 
   render() {
     const { value } = this.props;
-    const { IsEditBoardTitle, size } = this.state;
+    const { isEditBoardTitle, size } = this.state;
     return (
       <div>
-        {IsEditBoardTitle ? (
+        {isEditBoardTitle ? (
           <StyledBoardTitleInput
             type="text"
             defaultValue={value}
@@ -73,7 +73,7 @@ class BoardTitle extends React.Component {
 
 BoardTitle.propTypes = {
   value: string.isRequired,
-  idBoard: number.isRequired,
+  boardId: number.isRequired,
   editBoard: func.isRequired,
 };
 

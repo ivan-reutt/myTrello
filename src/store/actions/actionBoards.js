@@ -13,90 +13,90 @@ import {
   DEL_BOARD,
 } from 'constants/constants';
 
-export const addColumn = (idBoard, title) => ({
+export const addBoard = (titleBoard) => ({
+  type: ADD_BOARD,
+  titleBoard,
+  boardId: new Date().getTime(),
+});
+
+export const editBoard = (boardId, titleBoard) => ({
+  type: EDIT_BOARD,
+  titleBoard,
+  boardId,
+});
+
+export const delBoard = (boardId) => ({
+  type: DEL_BOARD,
+  boardId,
+});
+
+export const addColumn = (boardId, title) => ({
   type: ADD_COLUMN,
-  idBoard,
-  id: new Date().getTime(),
+  boardId,
+  columnId: new Date().getTime(),
   title,
 });
 
-export const delColumn = (idBoard, id) => ({
+export const delColumn = (boardId, columnId) => ({
   type: DEL_COLUMN,
-  idBoard,
-  id,
+  boardId,
+  columnId,
 });
 
-export const editColumn = (idBoard, id, title) => ({
+export const editColumn = (boardId, columnId, title) => ({
   type: EDIT_COLUMN,
-  idBoard,
-  id,
+  boardId,
+  columnId,
   title,
 });
 
-export const addTask = (idBoard, id, taskTitle) => ({
+export const addTask = (boardId, columnId, taskTitle) => ({
   type: ADD_TASK,
-  idBoard,
-  id,
+  boardId,
+  columnId,
   taskId: new Date().getTime(),
   taskTitle,
 });
 
-export const delTask = (idBoard, id, taskId) => ({
+export const delTask = (boardId, columnId, taskId) => ({
   type: DEL_TASK,
-  idBoard,
-  id,
+  boardId,
+  columnId,
   taskId,
 });
 
-export const editTask = (idBoard, id, taskTitle, taskId) => ({
+export const editTask = (boardId, columnId, taskTitle, taskId) => ({
   type: EDIT_TASK,
-  idBoard,
-  id,
+  boardId,
+  columnId,
   taskTitle,
   taskId,
 });
 
-export const dndTaskIn = (idBoard, id, tasks) => ({
+export const dndTaskIn = (boardId, columnId, tasks) => ({
   type: DND_TASK_IN,
-  idBoard,
-  id,
+  boardId,
+  columnId,
   tasks,
 });
 
 export const dndTaskOut = (
-  idBoard,
+  boardId,
   idStart,
   tasksStart,
   idFinish,
   tasksFinish,
 ) => ({
   type: DND_TASK_OUT,
-  idBoard,
+  boardId,
   idStart,
   tasksStart,
   idFinish,
   tasksFinish,
 });
 
-export const dndColumn = (idBoard, columnsList) => ({
+export const dndColumn = (boardId, columnsList) => ({
   type: DND_COLUMN,
-  idBoard,
+  boardId,
   columnsList,
-});
-
-export const addBoard = (titleBoard) => ({
-  type: ADD_BOARD,
-  titleBoard,
-  idBoard: new Date().getTime(),
-});
-
-export const editBoard = (idBoard, titleBoard) => ({
-  type: EDIT_BOARD,
-  titleBoard,
-  idBoard,
-});
-
-export const delBoard = (idBoard) => ({
-  type: DEL_BOARD,
-  idBoard,
 });

@@ -1,7 +1,7 @@
 import React from 'react';
 import Column from 'components/Column';
 import AddColumn from 'components/AddColumn';
-import { arrayOf, func, number, object, string } from 'prop-types';
+import { arrayOf, func, number, object, shape, string } from 'prop-types';
 import StyledColumnList from './styles';
 
 const BoardContent = ({
@@ -11,7 +11,7 @@ const BoardContent = ({
   delTask,
   editTask,
   addTask,
-  idBoard,
+  boardId,
   columns,
   searchText,
   provided,
@@ -23,9 +23,9 @@ const BoardContent = ({
     <StyledColumnList ref={provided.innerRef} {...provided.droppableProps}>
       {filteredColumns.map((elem, index) => (
         <Column
-          idBoard={idBoard}
+          boardId={boardId}
           tasks={elem.tasks}
-          id={elem.id}
+          columnId={elem.id}
           key={elem.id}
           title={elem.title}
           editColumn={editColumn}
@@ -37,15 +37,26 @@ const BoardContent = ({
         />
       ))}
       {provided.placeholder}
-      <AddColumn addColumn={addColumn} idBoard={idBoard} />
+      <AddColumn addColumn={addColumn} boardId={boardId} />
     </StyledColumnList>
   );
 };
 
 BoardContent.propTypes = {
-  columns: arrayOf(object).isRequired,
+  columns: arrayOf(
+    shape({
+      id: number.isRequired,
+      title: string.isRequired,
+      tasks: arrayOf(
+        shape({
+          id: number.isRequired,
+          title: string.isRequired,
+        }),
+      ),
+    }),
+  ).isRequired,
   searchText: string.isRequired,
-  idBoard: number.isRequired,
+  boardId: number.isRequired,
   addColumn: func.isRequired,
   editColumn: func.isRequired,
   delColumn: func.isRequired,

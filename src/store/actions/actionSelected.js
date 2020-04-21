@@ -1,8 +1,8 @@
 import { SELECT_BOARD } from 'constants/constants';
 
-const selectBoard = (idBoard) => ({
+const selectBoard = (boardId) => ({
   type: SELECT_BOARD,
-  id: idBoard,
+  id: boardId,
 });
 
 export default selectBoard;

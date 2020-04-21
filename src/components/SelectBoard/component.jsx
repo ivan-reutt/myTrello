@@ -1,5 +1,5 @@
-import React from 'react';
-import { arrayOf, func, number, object } from 'prop-types';
+import React, { useState } from 'react';
+import { arrayOf, func, number, shape, string } from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 
 import {
@@ -10,94 +10,101 @@ import {
 } from 'components/SelectBoard/styles';
 import BoardMini from 'components/BoardMini/index';
 
-class SelectBoard extends React.PureComponent {
-  state = {
-    IsShowFormAddBoard: false,
-    titleBoard: '',
+const SelectBoard = ({
+  addBoard,
+  boards,
+  selectBoard,
+  delBoard,
+  showBoardList,
+  selectedBoardId,
+}) => {
+  const [titleBoard, setTitleBoard] = useState('');
+  const [isShowFormAddBoard, setIsShowFormAddBoard] = useState(false);
+
+  const showFormAddBoard = () => {
+    setIsShowFormAddBoard(true);
   };
 
-  showFormAddBoard = () => {
-    this.setState({ IsShowFormAddBoard: true });
-  };
-
-  handleSubmit = (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    const { titleBoard } = this.state;
-    const { addBoard } = this.props;
 
     if (titleBoard) {
       addBoard(titleBoard);
-      this.setState({ titleBoard: '', IsShowFormAddBoard: false });
+      setTitleBoard('');
+      setIsShowFormAddBoard(false);
     }
   };
 
-  handleChange = (event) => {
+  const handleChange = (event) => {
     const { value } = event.target;
     if (value.trim()) {
-      this.setState({ titleBoard: value });
+      setTitleBoard(value);
     }
   };
 
-  render() {
-    const {
-      boards,
-      selectBoard,
-      delBoard,
-      showBoardList,
-      selectedBoardId,
-    } = this.props;
-    const { IsShowFormAddBoard } = this.state;
-    return (
-      <StyledSelectBoardWrap>
-        <h1>
-          <FormattedMessage id="yourBoards" defaultMessage="Your boards" />
-        </h1>
-        <StyledBoardMiniList>
-          {boards.map((item) => (
-            <BoardMini
-              title={item.titleBoard}
-              key={item.id}
-              id={item.id}
-              numCol={item.columns.length}
-              selectBoard={selectBoard}
-              showBoardList={showBoardList}
-              selectedBoardId={selectedBoardId}
-              delBoard={delBoard}
-            />
-          ))}
-          <StyledBoardAdd onClick={this.showFormAddBoard}>
-            {IsShowFormAddBoard ? (
-              <StyledBoardAddForm onSubmit={this.handleSubmit}>
-                <input
-                  type="text"
-                  onChange={this.handleChange}
-                  maxLength={100}
-                />
-                <button type="submit">
-                  <FormattedMessage id="addBoard" defaultMessage="Add board" />
-                </button>
-              </StyledBoardAddForm>
-            ) : (
-              <span>
-                <FormattedMessage
-                  id="createBoard"
-                  defaultMessage="Create new board"
-                />
-              </span>
-            )}
-          </StyledBoardAdd>
-        </StyledBoardMiniList>
-      </StyledSelectBoardWrap>
-    );
-  }
-}
+  return (
+    <StyledSelectBoardWrap>
+      <h1>
+        <FormattedMessage id="yourBoards" defaultMessage="Your boards" />
+      </h1>
+      <StyledBoardMiniList>
+        {boards.map((item) => (
+          <BoardMini
+            title={item.titleBoard}
+            key={item.id}
+            boardId={item.id}
+            numCol={item.columns.length}
+            selectBoard={selectBoard}
+            showBoardList={showBoardList}
+            selectedBoardId={selectedBoardId}
+            delBoard={delBoard}
+          />
+        ))}
+        <StyledBoardAdd onClick={showFormAddBoard}>
+          {isShowFormAddBoard ? (
+            <StyledBoardAddForm onSubmit={handleSubmit}>
+              <input type="text" onChange={handleChange} maxLength={100} />
+              <button type="submit">
+                <FormattedMessage id="addBoard" defaultMessage="Add board" />
+              </button>
+            </StyledBoardAddForm>
+          ) : (
+            <span>
+              <FormattedMessage
+                id="createBoard"
+                defaultMessage="Create new board"
+              />
+            </span>
+          )}
+        </StyledBoardAdd>
+      </StyledBoardMiniList>
+    </StyledSelectBoardWrap>
+  );
+};
 
 SelectBoard.defaultProps = {
   selectedBoardId: null,
 };
 
 SelectBoard.propTypes = {
-  boards: arrayOf(object).isRequired,
+  boards: arrayOf(
+    shape({
+      id: number.isRequired,
+      titleBoard: string.isRequired,
+      columns: arrayOf(
+        shape({
+          id: number.isRequired,
+          title: string.isRequired,
+          tasks: arrayOf(
+            shape({
+              id: number.isRequired,
+              title: string.isRequired,
+            }),
+          ),
+        }),
+      ),
+    }),
+  ).isRequired,
   selectedBoardId: number,
   addBoard: func.isRequired,
   selectBoard: func.isRequired,

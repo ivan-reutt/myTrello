@@ -8,7 +8,7 @@ export const StyledSelectBoardWrap = styled.div`
   bottom: 0;
   padding-bottom: 100px;
   background-color: #fff;
-  opacity: 0.8;
+  opacity: 0.85;
   display: flex;
   flex-direction: column;
   justify-content: center;

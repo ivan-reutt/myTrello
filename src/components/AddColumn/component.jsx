@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { func, number } from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 
@@ -8,54 +8,44 @@ import {
   StyledAddColumnButton,
 } from './styles';
 
-class AddColumn extends React.Component {
-  state = {
-    title: '',
-  };
+const AddColumn = ({ boardId, addColumn }) => {
+  const [title, setTitle] = useState('');
 
-  handleSubmit = (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    const { title } = this.state;
-    const { idBoard, addColumn } = this.props;
 
     if (title.trim()) {
-      addColumn(idBoard, title);
-      this.setState({ title: '' });
+      addColumn(boardId, title);
+      setTitle('');
     }
   };
 
-  handleChange = (event) => {
-    const title = event.target.value;
-
-    this.setState({ title });
+  const handleChange = (event) => {
+    setTitle(event.target.value);
   };
 
-  render() {
-    const { title } = this.state;
-    return (
-      <StyledAddColumnForm onSubmit={this.handleSubmit}>
-        <FormattedMessage id="addColumn" defaultMessage="Add new column">
-          {(placeholder) => (
-            <StyledAddColumnInput
-              type="text"
-              value={title}
-              placeholder={placeholder}
-              onChange={this.handleChange}
-            />
-          )}
-        </FormattedMessage>
-
-        <StyledAddColumnButton type="submit" disabled={!title}>
-          <i className="fas fa-plus" />
-        </StyledAddColumnButton>
-      </StyledAddColumnForm>
-    );
-  }
-}
+  return (
+    <StyledAddColumnForm onSubmit={handleSubmit}>
+      <FormattedMessage id="addColumn" defaultMessage="Add new column">
+        {(placeholder) => (
+          <StyledAddColumnInput
+            type="text"
+            value={title}
+            placeholder={placeholder}
+            onChange={handleChange}
+          />
+        )}
+      </FormattedMessage>
+      <StyledAddColumnButton type="submit" disabled={!title}>
+        <i className="fas fa-plus" />
+      </StyledAddColumnButton>
+    </StyledAddColumnForm>
+  );
+};
 
 AddColumn.propTypes = {
   addColumn: func.isRequired,
-  idBoard: number.isRequired,
+  boardId: number.isRequired,
 };
 
 export default AddColumn;

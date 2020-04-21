@@ -11,8 +11,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProp = (dispatch) => ({
   addBoard: (title) => dispatch(addBoard(title)),
-  delBoard: (idBoard) => dispatch(delBoard(idBoard)),
-  selectBoard: (idBoard) => dispatch(selectBoard(idBoard)),
+  delBoard: (boardId) => dispatch(delBoard(boardId)),
+  selectBoard: (boardId) => dispatch(selectBoard(boardId)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProp)(Page);

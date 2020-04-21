@@ -22,35 +22,40 @@ class Task extends React.Component {
   };
 
   handleEdit = () => {
-    const { idBoard, editTask, id, taskId } = this.props;
+    const { boardId, editTask, columnId, taskId } = this.props;
     const { isEdit, title } = this.state;
 
-    this.setState({ isEdit: !isEdit });
+    this.setState((prevState) => {
+      return { isEdit: !prevState.isEdit };
+    });
 
     if (isEdit) {
-      editTask(idBoard, id, title, taskId);
+      editTask(boardId, columnId, title, taskId);
     }
   };
 
-  handleChange = (element) => {
+  handleChange = (event) => {
     const defaultHeightTextarea = '26px';
+    const { target } = event;
 
-    if (element) {
-      const target = element.target ? element.target : element;
+    if (target.value.trim()) {
+      if (event) {
+        const element = target || event;
 
-      target.style.height = defaultHeightTextarea;
-      target.style.height = `${target.scrollHeight}px`;
-      this.setState({ title: element.target.value });
+        element.style.height = defaultHeightTextarea;
+        element.style.height = `${element.scrollHeight}px`;
+        this.setState({ title: target.value });
+      }
     }
   };
 
   handleKeyDown = (event) => {
-    const { idBoard, editTask, id, taskId } = this.props;
+    const { boardId, editTask, columnId, taskId } = this.props;
     const { title } = this.state;
 
     if (event.keyCode === 13) {
       this.setState({ isEdit: false });
-      editTask(idBoard, id, title, taskId);
+      editTask(boardId, columnId, title, taskId);
     }
   };
 
@@ -75,7 +80,7 @@ class Task extends React.Component {
   };
 
   render() {
-    const { idBoard, id, taskId, delTask, index } = this.props;
+    const { boardId, columnId, taskId, delTask, index } = this.props;
     const { isEdit, title, bgc, isShowTimer, date } = this.state;
     const symbolsInRow = 35;
     const defaultRows = Math.ceil(title.length / symbolsInRow);
@@ -105,11 +110,11 @@ class Task extends React.Component {
               )}
               <StyledTaskButtonGroup className={isEdit && 'edit'}>
                 <StyledTaskButton type="button" onClick={this.handleEdit}>
-                  <i className={isEdit ? 'fas fa-check' : 'fas fa-edit'} />
+                  <i className={`fas fa-${isEdit ? 'check' : 'edit'}`} />
                 </StyledTaskButton>
                 <StyledTaskButton
                   type="button"
-                  onClick={() => delTask(idBoard, id, taskId)}
+                  onClick={() => delTask(boardId, columnId, taskId)}
                 >
                   <i className="fas fa-times" />
                 </StyledTaskButton>
@@ -133,8 +138,8 @@ class Task extends React.Component {
 }
 
 Task.propTypes = {
-  id: number.isRequired,
-  idBoard: number.isRequired,
+  columnId: number.isRequired,
+  boardId: number.isRequired,
   title: string.isRequired,
   taskId: number.isRequired,
   index: number.isRequired,

@@ -1,17 +1,23 @@
 import React from 'react';
 import Task from 'components/Task';
-import { arrayOf, func, number, object } from 'prop-types';
+import { arrayOf, func, number, object, shape, string } from 'prop-types';
 import StyledTaskListWrap from './styles';
 
-const ColumnContent = ({ provided, delTask, editTask, idBoard, tasks, id }) => {
+const ColumnContent = ({
+  provided,
+  delTask,
+  editTask,
+  boardId,
+  tasks,
+  columnId,
+}) => {
   return (
     <StyledTaskListWrap ref={provided.innerRef} {...provided.droppableProps}>
-      {/* eslint-disable-next-line no-shadow */}
       {tasks.map((elem, index) => (
         <Task
-          idBoard={idBoard}
+          boardId={boardId}
           key={elem.id}
-          id={id}
+          columnId={columnId}
           taskId={elem.id}
           delTask={delTask}
           editTask={editTask}
@@ -25,9 +31,14 @@ const ColumnContent = ({ provided, delTask, editTask, idBoard, tasks, id }) => {
 };
 
 ColumnContent.propTypes = {
-  id: number.isRequired,
-  idBoard: number.isRequired,
-  tasks: arrayOf(object).isRequired,
+  columnId: number.isRequired,
+  boardId: number.isRequired,
+  tasks: arrayOf(
+    shape({
+      id: number.isRequired,
+      title: string.isRequired,
+    }),
+  ).isRequired,
   delTask: func.isRequired,
   editTask: func.isRequired,
   provided: object.isRequired,

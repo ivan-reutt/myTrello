@@ -14,19 +14,20 @@ class ColumnTitle extends React.Component {
 
   state = {
     title: this.props.title,
-    IsShowTextarea: false,
+    isShowTextarea: false,
   };
 
-  handleChange = (element) => {
+  handleChange = (event) => {
     const defaultHeightTextarea = '29px';
+    const { target } = event;
 
-    if (element.target.value.trim()) {
-      if (element) {
-        const target = element.target ? element.target : element;
-        target.style.height = defaultHeightTextarea;
-        target.style.height = `${target.scrollHeight}px`;
+    if (target.value.trim()) {
+      if (event) {
+        const element = target || event;
 
-        this.setState({ title: element.target.value });
+        element.style.height = defaultHeightTextarea;
+        element.style.height = `${element.scrollHeight}px`;
+        this.setState({ title: target.value });
       }
     }
   };
@@ -38,15 +39,15 @@ class ColumnTitle extends React.Component {
     }
   };
 
-  handleBlur = (id, title) => {
-    const { editColumn, idBoard } = this.props;
+  handleBlur = (columnId, title) => {
+    const { editColumn, boardId } = this.props;
 
-    editColumn(idBoard, id, title);
-    this.setState({ IsShowTextarea: false });
+    editColumn(boardId, columnId, title);
+    this.setState({ isShowTextarea: false });
   };
 
   handleClick = () => {
-    this.setState({ IsShowTextarea: true });
+    this.setState({ isShowTextarea: true });
   };
 
   handleFocus = (event) => {
@@ -54,13 +55,13 @@ class ColumnTitle extends React.Component {
   };
 
   render() {
-    const { idBoard, id, delColumn, provided } = this.props;
-    const { title, IsShowTextarea } = this.state;
+    const { boardId, columnId, delColumn, provided } = this.props;
+    const { title, isShowTextarea } = this.state;
     const symbolsInRow = 25;
     const defaultRows = Math.ceil(title.length / symbolsInRow);
     return (
       <StyledColumnTitleWrap>
-        {IsShowTextarea ? (
+        {isShowTextarea ? (
           <StyledColumnTitleTextarea
             defaultValue={title}
             ref={this.textareaRef}
@@ -69,7 +70,7 @@ class ColumnTitle extends React.Component {
             onFocus={this.handleFocus}
             onChange={this.handleChange}
             onKeyDown={this.handleKeyDown}
-            onBlur={() => this.handleBlur(id, title)}
+            onBlur={() => this.handleBlur(columnId, title)}
           />
         ) : (
           <StyledColumnTitleText
@@ -81,7 +82,7 @@ class ColumnTitle extends React.Component {
         )}
         <StyledColumnTitleButton
           type="button"
-          onClick={() => delColumn(idBoard, id)}
+          onClick={() => delColumn(boardId, columnId)}
         >
           <i className="fas fa-times" />
         </StyledColumnTitleButton>
@@ -91,8 +92,8 @@ class ColumnTitle extends React.Component {
 }
 
 ColumnTitle.propTypes = {
-  id: number.isRequired,
-  idBoard: number.isRequired,
+  columnId: number.isRequired,
+  boardId: number.isRequired,
   title: string.isRequired,
   delColumn: func.isRequired,
   editColumn: func.isRequired,

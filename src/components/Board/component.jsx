@@ -1,6 +1,6 @@
 import React from 'react';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
-import { arrayOf, func, number, object, string } from 'prop-types';
+import { arrayOf, func, number, string, shape } from 'prop-types';
 
 import BoardTitle from 'components/BoardTitle/index';
 import BoardContent from 'components/BoardContent/index';
@@ -8,8 +8,8 @@ import BoardContent from 'components/BoardContent/index';
 class Board extends React.PureComponent {
   onDragEnd = (result) => {
     const { destination, source, type } = result;
-    const { boards, dndColumn, dndTaskIn, dndTaskOut, idBoard } = this.props;
-    const activeBoard = boards.find((item) => item.id === idBoard);
+    const { boards, dndColumn, dndTaskIn, dndTaskOut, boardId } = this.props;
+    const activeBoard = boards.find((item) => item.id === boardId);
     const { columns } = activeBoard;
 
     if (!destination) {
@@ -17,7 +17,8 @@ class Board extends React.PureComponent {
     }
 
     if (
-      +destination.droppableId === +source.droppableId &&
+      parseInt(destination.droppableId, 10) ===
+        parseInt(source.droppableId, 10) &&
       destination.index === source.index
     ) {
       return;
@@ -30,25 +31,28 @@ class Board extends React.PureComponent {
       newColumnList.splice(source.index, 1);
       newColumnList.splice(destination.index, 0, dragColumn);
 
-      dndColumn(idBoard, newColumnList);
+      dndColumn(boardId, newColumnList);
     }
 
     if (type === 'task') {
       const dragColumn = columns.find(
-        (item) => item.id === +source.droppableId,
+        (item) => item.id === parseInt(source.droppableId, 10),
       );
       const dropColumn = columns.find(
-        (item) => item.id === +destination.droppableId,
+        (item) => item.id === parseInt(destination.droppableId, 10),
       );
       const dropTask = { ...dragColumn.tasks[source.index] };
 
-      if (+source.droppableId === +destination.droppableId) {
+      if (
+        parseInt(source.droppableId, 10) ===
+        parseInt(destination.droppableId, 10)
+      ) {
         const newTasks = [...dragColumn.tasks];
 
         newTasks.splice(source.index, 1);
         newTasks.splice(destination.index, 0, { ...dropTask });
 
-        dndTaskIn(idBoard, +source.droppableId, newTasks);
+        dndTaskIn(boardId, parseInt(source.droppableId, 10), newTasks);
         return;
       }
 
@@ -59,10 +63,10 @@ class Board extends React.PureComponent {
       finishTasksList.splice(destination.index, 0, { ...dropTask });
 
       dndTaskOut(
-        idBoard,
-        +source.droppableId,
+        boardId,
+        parseInt(source.droppableId, 10),
         startTasksList,
-        +destination.droppableId,
+        parseInt(destination.droppableId, 10),
         finishTasksList,
       );
     }
@@ -77,11 +81,11 @@ class Board extends React.PureComponent {
       editTask,
       addTask,
       boards,
-      idBoard,
+      boardId,
       editBoard,
       searchText,
     } = this.props;
-    const activeBoard = boards.find((item) => item.id === idBoard);
+    const activeBoard = boards.find((item) => item.id === boardId);
     const { columns, titleBoard } = activeBoard;
 
     return (
@@ -89,7 +93,7 @@ class Board extends React.PureComponent {
         <BoardTitle
           value={titleBoard}
           editBoard={editBoard}
-          idBoard={idBoard}
+          boardId={boardId}
         />
         <Droppable
           droppableId="all-columns"
@@ -107,7 +111,7 @@ class Board extends React.PureComponent {
               addTask={addTask}
               provided={provided}
               columns={columns}
-              idBoard={idBoard}
+              boardId={boardId}
             />
           )}
         </Droppable>
@@ -117,9 +121,26 @@ class Board extends React.PureComponent {
 }
 
 Board.propTypes = {
-  boards: arrayOf(object).isRequired,
+  boards: arrayOf(
+    shape({
+      id: number.isRequired,
+      titleBoard: string.isRequired,
+      columns: arrayOf(
+        shape({
+          id: number.isRequired,
+          title: string.isRequired,
+          tasks: arrayOf(
+            shape({
+              id: number.isRequired,
+              title: string.isRequired,
+            }),
+          ),
+        }),
+      ),
+    }),
+  ).isRequired,
   searchText: string.isRequired,
-  idBoard: number.isRequired,
+  boardId: number.isRequired,
   addColumn: func.isRequired,
   editColumn: func.isRequired,
   delColumn: func.isRequired,
